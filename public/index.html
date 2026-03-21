@@ -738,17 +738,17 @@
         <div class="cta-card">
           <div class="cta-card__title">Pilot</div>
           <div class="cta-card__desc">Deploy one AI use case in your market within 90 days. Prove the economics before committing infrastructure.</div>
-          <a href="mailto:eechernikov@yango.com?subject=Telecom AI Pilot" class="yt-btn yt-btn--primary">Start a pilot</a>
+          <a href="mailto:eechernikov@yango.com?subject=Telecom%20AI%20Pilot&cc=ramyanathg@yango-b2b.com" class="yt-btn yt-btn--primary">Start a pilot</a>
         </div>
         <div class="cta-card">
           <div class="cta-card__title">Strategy</div>
           <div class="cta-card__desc">Build your AI inference strategy with our team. Market assessment, use case prioritization, infrastructure roadmap.</div>
-          <a href="mailto:eechernikov@yango.com?subject=AI Strategy Session" class="yt-btn yt-btn--dark">Book a session</a>
+          <a href="mailto:eechernikov@yango.com?subject=AI%20Strategy%20Session&cc=ramyanathg@yango-b2b.com" class="yt-btn yt-btn--dark">Book a session</a>
         </div>
         <div class="cta-card">
           <div class="cta-card__title">Partnership</div>
           <div class="cta-card__desc">Full-stack partnership: use cases, platform, and infrastructure — co-built for your market.</div>
-          <a href="mailto:eechernikov@yango.com?subject=Telecom AI Partnership" class="yt-btn yt-btn--dark">Partner with us</a>
+          <a href="mailto:eechernikov@yango.com?subject=Telecom%20AI%20Partnership&cc=ramyanathg@yango-b2b.com" class="yt-btn yt-btn--dark">Partner with us</a>
         </div>
       </div>
     </div>
@@ -761,13 +761,13 @@
       <h2 class="yt-h2" style="text-transform: uppercase; text-align: center; margin-bottom: 3rem;">Get in touch</h2>
       <div style="display: flex; flex-direction: column; gap: 1.5rem;">
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
-          <input class="yt-input" type="text" placeholder="Name" style="background: rgba(255,255,255,0.08); color: #fff;">
-          <input class="yt-input" type="email" placeholder="Email" style="background: rgba(255,255,255,0.08); color: #fff;">
+          <input class="yt-input" id="form-name" type="text" placeholder="Name" style="background: rgba(255,255,255,0.08); color: #fff;">
+          <input class="yt-input" id="form-email" type="email" placeholder="Email" style="background: rgba(255,255,255,0.08); color: #fff;">
         </div>
-        <input class="yt-input" type="text" placeholder="Company" style="background: rgba(255,255,255,0.08); color: #fff;">
-        <input class="yt-input" type="text" placeholder="Role / Title" style="background: rgba(255,255,255,0.08); color: #fff;">
-        <textarea class="yt-input" placeholder="Tell us about your AI priorities" style="background: rgba(255,255,255,0.08); color: #fff;"></textarea>
-        <button class="yt-btn yt-btn--primary" style="align-self: flex-start;">Submit</button>
+        <input class="yt-input" id="form-company" type="text" placeholder="Company" style="background: rgba(255,255,255,0.08); color: #fff;">
+        <input class="yt-input" id="form-role" type="text" placeholder="Role / Title" style="background: rgba(255,255,255,0.08); color: #fff;">
+        <textarea class="yt-input" id="form-message" placeholder="Tell us about your AI priorities" style="background: rgba(255,255,255,0.08); color: #fff;"></textarea>
+        <button class="yt-btn yt-btn--primary" id="form-submit" style="align-self: flex-start;">Submit</button>
       </div>
     </div>
   </section>
@@ -794,7 +794,8 @@
           <div>
             <p class="yt-label" style="margin-bottom: 1rem; opacity: 0.5;">Contact</p>
             <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.75rem;">
-              <li><a href="mailto:eechernikov@yango.com" class="yt-label--sentence">eechernikov@yango.com</a></li>
+              <li><a href="mailto:eechernikov@yango.com?cc=ramyanathg@yango-b2b.com" class="yt-label--sentence">eechernikov@yango.com</a></li>
+              <li><a href="mailto:ramyanathg@yango-b2b.com" class="yt-label--sentence">ramyanathg@yango-b2b.com</a></li>
               <li><a href="https://tech.yango.com" class="yt-label--sentence">tech.yango.com</a></li>
             </ul>
           </div>
@@ -819,6 +820,26 @@
     const heroEl = document.getElementById('hero');
     window.addEventListener('scroll', () => {
       nav.classList.toggle('yt-nav--dark', window.scrollY > heroEl.offsetHeight - 100);
+    });
+
+    // Contact form → mailto
+    document.getElementById('form-submit').addEventListener('click', function(e) {
+      e.preventDefault();
+      var name = document.getElementById('form-name').value.trim();
+      var email = document.getElementById('form-email').value.trim();
+      var company = document.getElementById('form-company').value.trim();
+      var role = document.getElementById('form-role').value.trim();
+      var message = document.getElementById('form-message').value.trim();
+      var subject = 'Telecom AI Inquiry' + (company ? ' — ' + company : '');
+      var body = '';
+      if (name) body += 'Name: ' + name + '\n';
+      if (email) body += 'Email: ' + email + '\n';
+      if (company) body += 'Company: ' + company + '\n';
+      if (role) body += 'Role: ' + role + '\n';
+      if (message) body += '\n' + message;
+      window.location.href = 'mailto:eechernikov@yango.com?cc=ramyanathg@yango-b2b.com'
+        + '&subject=' + encodeURIComponent(subject)
+        + '&body=' + encodeURIComponent(body);
     });
   </script>
 </body>
