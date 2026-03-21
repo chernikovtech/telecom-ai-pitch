@@ -1,0 +1,185 @@
+/* ==========================================================================
+   YANGO TECH — Complete CSS Boilerplate (from tech.yango.com)
+   ========================================================================== */
+
+/* --- Yango Headline --- */
+@font-face {
+  font-family: "Yango Headline";
+  src: url("https://yastatic.net/s3/distribution/lpc/fonts/YangoHeadline/YangoHeadline.woff2") format("woff2"),
+       url("https://yastatic.net/s3/distribution/lpc/fonts/YangoHeadline/YangoHeadline.woff") format("woff");
+  font-weight: 900; font-style: normal; font-stretch: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Yango Headline";
+  src: url("https://yastatic.net/s3/distribution/lpc/fonts/YangoHeadline/YangoHeadline-Italic.woff2") format("woff2"),
+       url("https://yastatic.net/s3/distribution/lpc/fonts/YangoHeadline/YangoHeadline-Italic.woff") format("woff");
+  font-weight: 900; font-style: italic; font-stretch: normal; font-display: swap;
+}
+/* --- Yango Group Text --- */
+@font-face { font-family: "Yango Group Text"; src: url("https://yastatic.net/s3/distribution/lpc/fonts/YangoGroupText/YangoGroupText-Thin.woff2") format("woff2"); font-weight: 100; font-style: normal; font-display: swap; }
+@font-face { font-family: "Yango Group Text"; src: url("https://yastatic.net/s3/distribution/lpc/fonts/YangoGroupText/YangoGroupText-Light.woff2") format("woff2"); font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: "Yango Group Text"; src: url("https://yastatic.net/s3/distribution/lpc/fonts/YangoGroupText/YangoGroupText-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Yango Group Text"; src: url("https://yastatic.net/s3/distribution/lpc/fonts/YangoGroupText/YangoGroupText-Medium.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "Yango Group Text"; src: url("https://yastatic.net/s3/distribution/lpc/fonts/YangoGroupText/YangoGroupText-Bold.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "Yango Group Text"; src: url("https://yastatic.net/s3/distribution/lpc/fonts/YangoGroupText/YangoGroupText-Black.woff2") format("woff2"); font-weight: 900; font-style: normal; font-display: swap; }
+/* --- YS Text fallback --- */
+@font-face { font-family: "YS Text"; src: url("https://yastatic.net/s3/home/fonts/ys/4/text-regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "YS Text"; src: url("https://yastatic.net/s3/home/fonts/ys/4/text-medium.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+
+/* --- Tokens --- */
+:root {
+  --yt-max-width: 116rem;
+  --yt-padding: 1.87rem;
+  --primary-color: #FF1A1A;
+  --body-color: #F5F5F5;
+  --text-primary: #141414;
+  --text-secondary: #7A7A7A;
+  --text-on-dark: #F5F5F5;
+  --surface-dark: #232323;
+  --surface-mid: #323232;
+  --input-bg: rgb(226, 226, 226);
+  --border-color: rgba(196, 196, 196, 1);
+  --dropdown-bg: rgb(245, 245, 245);
+  --font-headline: "Yango Headline", Helvetica, Arial, sans-serif;
+  --font-body: "Yango Group Text", "YS Text", Helvetica, Arial, sans-serif;
+  --letter-spacing-body: 0.05em;
+  --letter-spacing-ui: 0.12em;
+  --letter-spacing-headline: calc(1em / 50);
+  --letter-spacing-cta: 0.15em;
+  --radius-card: 1.875rem;
+  --radius-pill: 2rem;
+  --radius-dropdown: 2.5rem;
+  --radius-input: 1.25rem;
+  --radius-social: 1rem;
+  --radius-tooltip: 1.5rem;
+  --radius-btn: 2rem;
+  --transition-fast: 0.2s ease-in-out;
+  --transition-image: 1.2s ease-in-out;
+  --transition-card: 0.4s ease-in-out;
+  --nav-gradient-color: rgba(0, 0, 0, 0.5);
+}
+@media (max-width: 1439px) { :root { --yt-padding: 1.25rem; } }
+
+/* --- Reset --- */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { font-size: 16px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+body {
+  font-family: var(--font-body); font-weight: 400; font-size: 0.875rem;
+  line-height: 1.5; color: var(--text-primary); background-color: var(--body-color);
+  text-transform: none; letter-spacing: var(--letter-spacing-body);
+  font-variant-numeric: proportional-nums;
+}
+::selection { background: var(--primary-color); color: white; }
+a { color: inherit; text-decoration: none; transition: var(--transition-fast); }
+a:hover { color: var(--primary-color); }
+img { max-width: 100%; height: auto; display: block; }
+
+/* --- Layout --- */
+.yt-container { width: 100%; max-width: var(--yt-max-width); margin: 0 auto; padding: 0 var(--yt-padding); }
+.yt-section { padding: 6rem 0; }
+.yt-section--tight { padding: 3rem 0; }
+.yt-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.yt-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+@media (max-width: 1024px) { .yt-grid-3 { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 768px) { .yt-grid-2, .yt-grid-3 { grid-template-columns: 1fr; } }
+
+/* --- Typography --- */
+.yt-h1 { font-family: var(--font-headline); font-weight: 900; font-size: clamp(3rem, 5vw, 6.25rem); line-height: 85%; letter-spacing: var(--letter-spacing-headline); }
+.yt-h2 { font-family: var(--font-headline); font-weight: 900; font-size: clamp(2rem, 3.5vw, 3.85rem); line-height: 90%; letter-spacing: var(--letter-spacing-headline); }
+.yt-h3 { font-family: var(--font-headline); font-weight: 900; font-size: clamp(1.5rem, 2.5vw, 3rem); line-height: 90%; letter-spacing: var(--letter-spacing-headline); }
+.yt-body { font-family: var(--font-body); font-weight: 400; font-size: 0.875rem; line-height: 1.5; letter-spacing: var(--letter-spacing-body); text-transform: none; }
+.yt-label { font-family: var(--font-body); font-weight: 500; font-size: 0.72rem; line-height: 1.2; letter-spacing: var(--letter-spacing-ui); text-transform: uppercase; }
+.yt-label--sentence { font-family: var(--font-body); font-weight: 400; font-size: 0.875rem; letter-spacing: var(--letter-spacing-body); text-transform: none; }
+.yt-text-secondary { color: var(--text-secondary); }
+
+/* --- Theme --- */
+.yt-dark { background-color: #000; color: var(--text-on-dark); }
+.yt-dark a:hover { color: var(--primary-color); }
+.yt-light { background-color: var(--body-color); color: var(--text-primary); }
+
+/* --- Buttons --- */
+.yt-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  padding: 1rem 2rem; border: none; border-radius: var(--radius-btn);
+  font-family: var(--font-body); font-weight: 500; font-size: 0.875rem;
+  letter-spacing: var(--letter-spacing-cta); text-transform: uppercase;
+  text-decoration: none; cursor: pointer; transition: var(--transition-fast); white-space: nowrap;
+}
+.yt-btn--primary { background: var(--primary-color); color: white; }
+.yt-btn--primary:hover { background: var(--text-primary); color: white; }
+.yt-btn--dark { background: var(--surface-dark); color: var(--text-on-dark); }
+.yt-btn--dark:hover { background: var(--primary-color); color: white; }
+.yt-btn--outline { background: transparent; color: var(--text-primary); border: 1px solid var(--border-color); }
+.yt-btn--outline:hover { border-color: var(--primary-color); color: var(--primary-color); }
+
+/* --- Cards --- */
+.yt-card { background: white; border-radius: var(--radius-card); overflow: hidden; position: relative; }
+
+/* --- Inputs --- */
+.yt-input {
+  width: 100%; padding: 2rem 1.5rem; background: var(--input-bg); border: none;
+  border-radius: var(--radius-input); font-family: var(--font-body); font-size: 0.875rem;
+  font-weight: 400; letter-spacing: 0.04em; text-transform: none; color: var(--text-primary);
+  outline: none; transition: var(--transition-fast);
+}
+.yt-input::placeholder { color: var(--text-secondary); text-transform: none; letter-spacing: 0.04em; }
+.yt-input:focus { outline: 2px solid var(--primary-color); outline-offset: -2px; }
+textarea.yt-input { resize: vertical; min-height: 8rem; }
+
+/* --- Nav --- */
+.yt-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  padding: 1.25rem var(--yt-padding);
+}
+.yt-nav::before {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, var(--nav-gradient-color) 0%, transparent 100%);
+  pointer-events: none; z-index: -1;
+}
+.yt-nav__inner { display: flex; align-items: center; justify-content: space-between; max-width: var(--yt-max-width); margin: 0 auto; }
+.yt-nav__logo img { height: 30px; width: auto; }
+.yt-nav.yt-nav--dark { --nav-gradient-color: rgba(255,255,255,0.6); }
+.yt-nav.yt-nav--dark .yt-nav__logo img { filter: invert(1); }
+.yt-nav.yt-nav--dark .yt-nav__link { color: var(--text-primary); }
+.yt-nav.yt-nav--dark .yt-nav__link--active { color: var(--primary-color); }
+.yt-nav__links { display: flex; align-items: center; gap: 0.5rem; list-style: none; }
+.yt-nav__link {
+  padding: 1.1rem 1rem; font-size: 0.72rem; font-weight: 500;
+  letter-spacing: var(--letter-spacing-ui); text-transform: uppercase;
+  text-decoration: none; color: var(--text-on-dark); transition: var(--transition-fast);
+}
+.yt-nav__link--active { color: var(--primary-color) !important; }
+.yt-nav__links:hover .yt-nav__link:not(:hover) { opacity: 0.4; }
+.mobile-toggle { display: none; background: none; border: none; color: white; cursor: pointer; }
+.yt-nav.yt-nav--dark .mobile-toggle { color: var(--text-primary); }
+
+@media (max-width: 1024px) {
+  .yt-nav__links {
+    display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0;
+    background: rgba(0,0,0,0.95); padding: 2rem; gap: 0;
+  }
+  .yt-nav__links.open { display: flex; }
+  .yt-nav__link { padding: 1rem; width: 100%; }
+  .mobile-toggle { display: block; }
+}
+
+/* --- Hero --- */
+.yt-hero {
+  position: relative; min-height: 100vh; display: flex; align-items: center;
+  background: #000; color: var(--text-on-dark); overflow: hidden; padding-top: 6rem;
+}
+.yt-hero__bg { position: absolute; inset: 0; z-index: 0; }
+.yt-hero__content { position: relative; z-index: 1; }
+
+/* --- Footer --- */
+.yt-footer { background: var(--text-primary); color: var(--text-on-dark); padding: 4rem 0 2rem; }
+.yt-footer a { color: var(--text-on-dark); text-decoration: none; transition: opacity var(--transition-fast); }
+.yt-footer a:hover { opacity: 0.5; color: var(--text-on-dark); }
+.yt-footer__bottom {
+  display: flex; flex-wrap: wrap; gap: 1rem 3.75rem; margin-top: 3rem;
+  padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* --- Animations --- */
+.yt-fade-in { opacity: 0; transform: translateY(2rem); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+.yt-fade-in.yt-visible { opacity: 1; transform: translateY(0); }

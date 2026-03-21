@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>B2C AI Platform — Telecom × AI — Yango Tech</title>
+  <meta name="description" content="Become the AI app store for emerging markets. Provide the rails — billing, distribution, inference — and let developers build the services.">
+  <link rel="preload" as="font" href="https://yastatic.net/s3/distribution/lpc/fonts/YangoHeadline/YangoHeadline.woff2" crossorigin="anonymous">
+  <link rel="preload" as="font" href="https://yastatic.net/s3/distribution/lpc/fonts/YangoGroupText/YangoGroupText-Regular.woff2" crossorigin="anonymous">
+  <link rel="preload" as="font" href="https://yastatic.net/s3/distribution/lpc/fonts/YangoGroupText/YangoGroupText-Medium.woff2" crossorigin="anonymous">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23FF1A1A' width='100' height='100' rx='20'/></svg>">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .page-hero { position: relative; min-height: 65vh; display: flex; align-items: center; background: #000; color: var(--text-on-dark); overflow: hidden; padding-top: 8rem; padding-bottom: 4rem; }
+    .page-hero__bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 60% 30%, rgba(255,26,26,0.1) 0%, transparent 50%), #000; }
+    .page-hero__content { position: relative; z-index: 1; }
+    .lesson-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+    .lesson-card { background: white; border-radius: var(--radius-card); padding: 2rem; }
+    .lesson-card__icon { font-size: 1.5rem; margin-bottom: 1rem; opacity: 0.15; font-family: var(--font-headline); font-weight: 900; color: var(--text-primary); }
+    .lesson-card__fail { font-size: 0.72rem; font-weight: 500; letter-spacing: var(--letter-spacing-ui); text-transform: uppercase; color: var(--primary-color); margin-bottom: 0.5rem; }
+    .lesson-card__title { font-family: var(--font-headline); font-weight: 900; font-size: 1rem; line-height: 95%; letter-spacing: var(--letter-spacing-headline); text-transform: uppercase; color: var(--text-primary); margin-bottom: 0.75rem; }
+    .lesson-card__desc { font-size: 0.82rem; letter-spacing: var(--letter-spacing-body); color: var(--text-secondary); line-height: 1.5; }
+    @media (max-width: 768px) { .lesson-grid { grid-template-columns: 1fr; } }
+    .platform-diagram { background: white; border-radius: var(--radius-card); padding: 3rem; margin-top: 3rem; }
+    .platform-layer { padding: 1.75rem 2rem; border-bottom: 1px solid rgba(196,196,196,0.2); }
+    .platform-layer:last-child { border-bottom: none; }
+    .platform-layer__inner { display: flex; align-items: center; gap: 2rem; }
+    .platform-layer__label { min-width: 8rem; font-size: 0.72rem; font-weight: 500; letter-spacing: var(--letter-spacing-ui); text-transform: uppercase; }
+    .platform-layer__content { flex: 1; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .platform-pill { padding: 0.5rem 1rem; border-radius: var(--radius-pill); font-size: 0.72rem; font-weight: 500; letter-spacing: var(--letter-spacing-ui); text-transform: uppercase; }
+    .layer--developers { background: rgba(255,26,26,0.03); }
+    .layer--developers .platform-layer__label { color: var(--primary-color); }
+    .layer--developers .platform-pill { background: rgba(255,26,26,0.08); color: var(--primary-color); }
+    .layer--platform { background: rgba(20,20,20,0.02); }
+    .layer--platform .platform-layer__label { color: var(--text-primary); }
+    .layer--platform .platform-pill { background: var(--body-color); color: var(--text-primary); }
+    .layer--infra { background: rgba(20,20,20,0.04); }
+    .layer--infra .platform-layer__label { color: var(--text-secondary); }
+    .layer--infra .platform-pill { background: rgba(20,20,20,0.06); color: var(--text-primary); }
+    .platform-arrow { text-align: center; padding: 0.75rem; font-size: 0.62rem; font-weight: 500; letter-spacing: var(--letter-spacing-ui); text-transform: uppercase; color: var(--text-secondary); }
+    @media (max-width: 768px) { .platform-layer__inner { flex-direction: column; align-items: flex-start; gap: 0.75rem; } }
+    .phone-frame { width: 280px; margin: 0 auto; background: #1a1a1a; border-radius: 2.5rem; padding: 0.75rem; position: relative; }
+    .phone-frame::before { content: ""; position: absolute; top: 0.75rem; left: 50%; transform: translateX(-50%); width: 80px; height: 22px; background: #1a1a1a; border-radius: 0 0 1rem 1rem; z-index: 10; }
+    .phone-screen { background: white; border-radius: 2rem; overflow: hidden; min-height: 500px; }
+    .phone-status { display: flex; justify-content: space-between; padding: 0.75rem 1.25rem 0.5rem; font-size: 0.6rem; font-weight: 600; color: var(--text-primary); }
+    .phone-header { padding: 0.5rem 1.25rem 1rem; }
+    .phone-header__title { font-family: var(--font-headline); font-weight: 900; font-size: 1.1rem; letter-spacing: var(--letter-spacing-headline); text-transform: uppercase; color: var(--text-primary); }
+    .phone-header__sub { font-size: 0.68rem; color: var(--text-secondary); margin-top: 0.15rem; letter-spacing: var(--letter-spacing-body); }
+    .phone-body { padding: 0 1rem 1.5rem; }
+    .showcase { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; padding: 5rem 0; border-bottom: 1px solid rgba(196,196,196,0.3); align-items: center; }
+    .showcase:last-of-type { border-bottom: none; }
+    .showcase--reverse { direction: rtl; }
+    .showcase--reverse > * { direction: ltr; }
+    @media (max-width: 768px) { .showcase, .showcase--reverse { grid-template-columns: 1fr; direction: ltr; } }
+    .product-label { font-size: 0.72rem; font-weight: 500; letter-spacing: var(--letter-spacing-ui); text-transform: uppercase; color: var(--primary-color); margin-bottom: 1rem; }
+    .product-title { font-family: var(--font-headline); font-weight: 900; font-size: clamp(1.5rem, 2.5vw, 2.25rem); line-height: 90%; letter-spacing: var(--letter-spacing-headline); text-transform: uppercase; color: var(--text-primary); margin-bottom: 1.25rem; }
+    .product-desc { font-size: 0.875rem; letter-spacing: var(--letter-spacing-body); color: var(--text-secondary); line-height: 1.6; margin-bottom: 2rem; }
+    .vp-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+    .vp-item { display: flex; gap: 1rem; align-items: flex-start; }
+    .vp-icon { width: 2rem; height: 2rem; border-radius: 0.5rem; background: rgba(255,26,26,0.08); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .vp-icon svg { width: 1rem; height: 1rem; }
+    .vp-text__title { font-size: 0.875rem; font-weight: 500; color: var(--text-primary); letter-spacing: var(--letter-spacing-body); }
+    .vp-text__desc { font-size: 0.8rem; color: var(--text-secondary); letter-spacing: var(--letter-spacing-body); margin-top: 0.2rem; }
+    .mini-app-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.6rem; }
+    .mini-app { background: var(--body-color); border-radius: 1rem; padding: 0.75rem; display: flex; align-items: center; gap: 0.6rem; transition: var(--transition-fast); }
+    .mini-app__icon { width: 2.25rem; height: 2.25rem; border-radius: 0.6rem; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+    .mini-app__name { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.04em; color: var(--text-primary); }
+    .mini-app__dev { font-size: 0.55rem; color: var(--text-secondary); letter-spacing: 0.03em; }
+    .econ-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+    .econ-card { background: white; border-radius: var(--radius-card); padding: 2.5rem; text-align: center; }
+    .econ-card__value { font-family: var(--font-headline); font-weight: 900; font-size: 2.5rem; color: var(--text-primary); line-height: 1; }
+    .econ-card__label { font-size: 0.72rem; font-weight: 500; letter-spacing: var(--letter-spacing-ui); text-transform: uppercase; color: var(--text-secondary); margin-top: 0.5rem; }
+    .econ-card__desc { font-size: 0.82rem; color: var(--text-secondary); letter-spacing: var(--letter-spacing-body); margin-top: 1rem; line-height: 1.5; }
+    @media (max-width: 768px) { .econ-grid { grid-template-columns: 1fr; } }
+    .flywheel { max-width: 48rem; margin: 3rem auto 0; }
+    .flywheel-step { display: flex; gap: 2rem; align-items: flex-start; padding: 1.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .flywheel-step:last-child { border-bottom: none; }
+    .flywheel-step__num { font-family: var(--font-headline); font-weight: 900; font-size: 1.5rem; color: var(--primary-color); line-height: 1; min-width: 2rem; }
+    .flywheel-step__title { font-size: 0.875rem; font-weight: 500; color: #fff; letter-spacing: var(--letter-spacing-body); }
+    .flywheel-step__desc { font-size: 0.82rem; color: rgba(245,245,245,0.5); letter-spacing: var(--letter-spacing-body); margin-top: 0.25rem; }
+    .portal-frame { background: #1a1a1a; border-radius: 2rem; padding: 1rem; }
+    .portal-screen { background: white; border-radius: 1.25rem; overflow: hidden; }
+    .portal-bar { display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.25rem; border-bottom: 1px solid rgba(196,196,196,0.2); }
+    .portal-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(196,196,196,0.5); }
+    .portal-url { flex: 1; background: var(--body-color); border-radius: 0.5rem; padding: 0.4rem 1rem; font-size: 0.68rem; color: var(--text-secondary); }
+    .portal-body { padding: 1.5rem; }
+    .portal-sidebar { display: grid; grid-template-columns: 8rem 1fr; gap: 1.5rem; }
+    .portal-nav { display: flex; flex-direction: column; gap: 0.25rem; }
+    .portal-nav-item { padding: 0.5rem 0.75rem; border-radius: 0.5rem; font-size: 0.62rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-secondary); }
+    .portal-nav-item--active { background: var(--body-color); color: var(--text-primary); }
+    .portal-stat-row { display: flex; gap: 0.75rem; margin-bottom: 1.25rem; }
+    .portal-stat { flex: 1; background: var(--body-color); border-radius: 0.75rem; padding: 0.75rem; text-align: center; }
+    .portal-stat__val { font-family: var(--font-headline); font-weight: 900; font-size: 1rem; color: var(--text-primary); }
+    .portal-stat__lbl { font-size: 0.55rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-secondary); margin-top: 0.15rem; }
+    .code-block { background: #1a1a1a; border-radius: 0.75rem; padding: 1rem; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.62rem; color: rgba(245,245,245,0.8); line-height: 1.6; overflow-x: auto; white-space: pre; }
+    .code-comment { color: rgba(245,245,245,0.35); }
+    .code-key { color: #FF6B6B; }
+    .code-string { color: #69DB7C; }
+    .code-method { color: #74C0FC; }
+    @media (max-width: 768px) { .portal-sidebar { grid-template-columns: 1fr; } .portal-nav { flex-direction: row; flex-wrap: wrap; } }
+    .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
+    .compare-card { background: white; border-radius: var(--radius-card); padding: 2.5rem; }
+    .compare-card--weak { opacity: 0.65; }
+    .compare-card--strong { border: 2px solid var(--primary-color); }
+    .compare-card__badge { display: inline-block; padding: 0.4rem 0.8rem; border-radius: var(--radius-pill); font-size: 0.62rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1.25rem; }
+    .compare-card--weak .compare-card__badge { background: var(--body-color); color: var(--text-secondary); }
+    .compare-card--strong .compare-card__badge { background: var(--primary-color); color: white; }
+    .compare-card__title { font-family: var(--font-headline); font-weight: 900; font-size: clamp(1rem, 1.5vw, 1.25rem); line-height: 95%; letter-spacing: var(--letter-spacing-headline); text-transform: uppercase; color: var(--text-primary); margin-bottom: 1.25rem; }
+    .compare-card__list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .compare-card__list li { font-size: 0.82rem; letter-spacing: var(--letter-spacing-body); color: var(--text-secondary); padding-left: 1.25rem; position: relative; line-height: 1.45; }
+    .compare-card__list li::before { content: ""; position: absolute; left: 0; top: 0.45rem; width: 5px; height: 5px; border-radius: 1px; }
+    .compare-card--weak .compare-card__list li::before { background: var(--text-secondary); }
+    .compare-card--strong .compare-card__list li::before { background: var(--primary-color); }
+    @media (max-width: 768px) { .compare-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <nav class="yt-nav" id="nav">
+    <div class="yt-nav__inner">
+      <a href="index.html" class="yt-nav__logo"><img src="https://avatars.mds.yandex.net/get-lpc/14837328/21641dca-3288-4eeb-8d99-81f8cb31a763/orig" alt="Yango Tech" width="176" height="30" loading="eager"></a>
+      <ul class="yt-nav__links">
+        <li><a class="yt-nav__link" href="index.html">Thesis</a></li>
+        <li><a class="yt-nav__link" href="use-cases.html">Use Cases</a></li>
+        <li><a class="yt-nav__link" href="b2b.html">B2B Offering</a></li>
+        <li><a class="yt-nav__link yt-nav__link--active" href="b2c.html">B2C Offering</a></li>
+        <li><a class="yt-nav__link" href="research.html">Research</a></li>
+        <li><a class="yt-btn yt-btn--dark" href="index.html#contact">Talk to an expert</a></li>
+      </ul>
+      <button class="mobile-toggle" onclick="document.querySelector('.yt-nav__links').classList.toggle('open')" aria-label="Menu"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button>
+    </div>
+  </nav>
+
+  <section class="page-hero">
+    <div class="page-hero__bg"></div>
+    <div class="page-hero__content yt-container">
+      <p class="yt-label" style="color: var(--primary-color); margin-bottom: 1.5rem;">B2C Platform Strategy</p>
+      <h1 class="yt-h1" style="max-width: 52rem; text-transform: uppercase;">Be the AI app store.<br>Not the app builder.</h1>
+      <p class="yt-body" style="margin-top: 2rem; max-width: 38rem; color: rgba(245,245,245,0.6);">Provide the rails — billing, distribution, inference — and let thousands of developers build the AI services your consumers will use. You take 20–30% of every transaction. This is the M-Pesa playbook, applied to AI.</p>
+      <div style="margin-top: 3rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+        <a href="index.html#contact" class="yt-btn yt-btn--primary">Build your AI platform</a>
+        <a href="#model" class="yt-btn yt-btn--outline" style="border-color: rgba(255,255,255,0.3); color: white;">See the model</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="yt-section yt-light">
+    <div class="yt-container">
+      <div class="yt-fade-in" style="max-width: 48rem;">
+        <p class="yt-label" style="color: var(--primary-color); margin-bottom: 1.5rem;">The Lesson</p>
+        <h2 class="yt-h2" style="text-transform: uppercase;">Telecoms are not product companies. Stop building apps.</h2>
+        <p class="yt-body" style="margin-top: 1.25rem; color: var(--text-secondary);">Every time a telco tried to build consumer products in-house, it lost to third parties who moved faster, iterated more, and understood users better. The track record speaks for itself.</p>
+      </div>
+      <div class="lesson-grid yt-fade-in">
+        <div class="lesson-card">
+          <div class="lesson-card__icon">01</div>
+          <div class="lesson-card__fail">Carrier app stores</div>
+          <div class="lesson-card__title">Lost to Google Play &amp; Apple</div>
+          <div class="lesson-card__desc">Vodafone, Orange, and others launched carrier app stores. All dead. Third-party developers chose the platform with the largest reach.</div>
+        </div>
+        <div class="lesson-card">
+          <div class="lesson-card__icon">02</div>
+          <div class="lesson-card__fail">Carrier music / video</div>
+          <div class="lesson-card__title">Lost to Spotify &amp; YouTube</div>
+          <div class="lesson-card__desc">Telecom-built media services could not match the content investment or UX iteration speed of pure-play platforms.</div>
+        </div>
+        <div class="lesson-card">
+          <div class="lesson-card__icon">03</div>
+          <div class="lesson-card__fail">Carrier messaging</div>
+          <div class="lesson-card__title">Lost to WhatsApp</div>
+          <div class="lesson-card__desc">RCS arrived 10 years too late. WhatsApp won because it shipped fast, iterated daily, and did not need committee approval.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="yt-section yt-dark">
+    <div class="yt-container">
+      <div class="yt-fade-in" style="max-width: 48rem; text-align: center; margin: 0 auto;">
+        <p class="yt-label" style="color: var(--primary-color); margin-bottom: 1.5rem;">The Exception</p>
+        <h2 class="yt-h2" style="text-transform: uppercase;">But M-Pesa won. Why?</h2>
+        <p class="yt-body" style="margin-top: 1.5rem; color: rgba(245,245,245,0.6); max-width: 36rem; margin-left: auto; margin-right: auto;">Because Safaricom did not try to build every financial product. It built the platform — the rails, the agent network, the billing layer — and let 100,000+ developers and merchants build on top via Daraja API. The result: 60,000+ integrations, $500B+ in annual transaction volume, and 44% of service revenue from VAS.</p>
+        <p class="yt-body" style="margin-top: 1.5rem; color: rgba(245,245,245,0.9); font-weight: 500; max-width: 36rem; margin-left: auto; margin-right: auto;">The playbook is clear: build the infrastructure, provide the distribution, take the platform fee. Now apply it to AI.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="yt-section yt-light" id="model">
+    <div class="yt-container">
+      <div class="yt-fade-in" style="max-width: 48rem;">
+        <p class="yt-label" style="color: var(--primary-color); margin-bottom: 1.5rem;">The Platform Model</p>
+        <h2 class="yt-h2" style="text-transform: uppercase;">You provide the rails. Developers build the services.</h2>
+        <p class="yt-body" style="margin-top: 1.25rem; color: var(--text-secondary);">Your telecom provides three things no startup can replicate: carrier billing (including mobile money), distribution to 100M+ SIM cards, and local AI inference. Small companies plug into your platform, build AI mini-apps, and you take 20-30% of every transaction.</p>
+      </div>
+      <div class="platform-diagram yt-fade-in">
+        <div class="platform-layer layer--developers">
+          <div class="platform-layer__inner">
+            <div class="platform-layer__label">Developers build</div>
+            <div class="platform-layer__content">
+              <span class="platform-pill">AI tutors</span><span class="platform-pill">Health triage</span><span class="platform-pill">Bookkeeping</span><span class="platform-pill">Legal advice</span><span class="platform-pill">Agri-advisory</span><span class="platform-pill">Translation</span><span class="platform-pill">Job matching</span><span class="platform-pill">Coding tools</span><span class="platform-pill">Insurance bots</span>
+            </div>
+          </div>
+        </div>
+        <div class="platform-arrow">&#8595; Built on your platform via API &#8595;</div>
+        <div class="platform-layer layer--platform">
+          <div class="platform-layer__inner">
+            <div class="platform-layer__label">You provide</div>
+            <div class="platform-layer__content">
+              <span class="platform-pill">Carrier billing</span><span class="platform-pill">Mobile money</span><span class="platform-pill">SIM distribution</span><span class="platform-pill">USSD / STK gateway</span><span class="platform-pill">AI token metering</span><span class="platform-pill">Developer portal</span><span class="platform-pill">Revenue share API</span>
+            </div>
+          </div>
+        </div>
+        <div class="platform-arrow">&#8595; Powered by your infrastructure &#8595;</div>
+        <div class="platform-layer layer--infra">
+          <div class="platform-layer__inner">
+            <div class="platform-layer__label">You own</div>
+            <div class="platform-layer__content">
+              <span class="platform-pill">Local inference GPUs</span><span class="platform-pill">Edge compute</span><span class="platform-pill">Data sovereignty</span><span class="platform-pill">Network backbone</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="yt-section yt-light" style="padding-top: 0;">
+    <div class="yt-container">
+      <div class="yt-fade-in" style="max-width: 40rem;">
+        <p class="yt-label" style="color: var(--primary-color); margin-bottom: 1.5rem;">The Choice</p>
+        <h2 class="yt-h2" style="text-transform: uppercase;">Build apps or build the platform?</h2>
+      </div>
+      <div class="compare-grid yt-fade-in">
+        <div class="compare-card compare-card--weak">
+          <div class="compare-card__badge">Losing strategy</div>
+          <div class="compare-card__title">Telco builds consumer AI apps</div>
+          <ul class="compare-card__list">
+            <li>Requires product teams, UX designers, ML engineers</li>
+            <li>Slow iteration — 6-month release cycles</li>
+            <li>Must understand every vertical (education, health, finance...)</li>
+            <li>Linear revenue — scales with headcount</li>
+            <li>Competes with thousands of nimble startups</li>
+            <li>History: lost to WhatsApp, Spotify, Google Play</li>
+          </ul>
+        </div>
+        <div class="compare-card compare-card--strong">
+          <div class="compare-card__badge">Winning strategy</div>
+          <div class="compare-card__title">Telco runs the AI distribution platform</div>
+          <ul class="compare-card__list">
+            <li>Provides billing, distribution, and inference APIs</li>
+            <li>Developers iterate daily on your platform</li>
+            <li>Ecosystem covers every vertical automatically</li>
+            <li>Network effects — more devs, more users, more devs</li>
+            <li>20-30% take rate on every transaction</li>
+            <li>History: M-Pesa, App Store, Google Play, Shopify</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="yt-section yt-light" style="padding-top: 0;">
+    <div class="yt-container">
+      <div class="showcase yt-fade-in">
+        <div>
+          <div class="product-label">Consumer experience</div>
+          <div class="product-title">AI Mini-App Marketplace</div>
+          <div class="product-desc">Inside your telecom app, consumers discover AI mini-apps built by third-party developers. No app store downloads, no credit card required — they pay with airtime, mobile money, or bundled AI tokens. One tap to activate.</div>
+          <ul class="vp-list">
+            <li class="vp-item">
+              <div class="vp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#FF1A1A" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+              <div><div class="vp-text__title">Zero friction for consumers</div><div class="vp-text__desc">No app download, no sign-up — works inside the telecom app, USSD, or WhatsApp</div></div>
+            </li>
+            <li class="vp-item">
+              <div class="vp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#FF1A1A" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+              <div><div class="vp-text__title">Pay with airtime or mobile money</div><div class="vp-text__desc">No credit card needed — 800M+ unbanked users can access AI services</div></div>
+            </li>
+            <li class="vp-item">
+              <div class="vp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#FF1A1A" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10"/></svg></div>
+              <div><div class="vp-text__title">Local developers, local languages</div><div class="vp-text__desc">Developers in your market build AI for Swahili, Hausa, Bahasa, Amharic — not just English</div></div>
+            </li>
+          </ul>
+        </div>
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <div class="phone-status"><span>9:41</span><span>LTE</span></div>
+            <div class="phone-header">
+              <div class="phone-header__title">AI Services</div>
+              <div class="phone-header__sub">Discover AI-powered mini-apps</div>
+            </div>
+            <div class="phone-body">
+              <div style="background: var(--body-color); border-radius: 0.75rem; padding: 0.6rem 1rem; margin-bottom: 1rem; font-size: 0.65rem; color: var(--text-secondary);">Search AI services...</div>
+              <div style="font-size: 0.6rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 0.6rem;">Popular</div>
+              <div class="mini-app-grid">
+                <div class="mini-app"><div class="mini-app__icon" style="background: rgba(255,26,26,0.08);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF1A1A" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div><div><div class="mini-app__name">Mwalimu AI</div><div class="mini-app__dev">by EduKenya</div></div></div>
+                <div class="mini-app"><div class="mini-app__icon" style="background: rgba(34,197,94,0.08);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><div class="mini-app__name">Daktari AI</div><div class="mini-app__dev">by HealthBridge</div></div></div>
+                <div class="mini-app"><div class="mini-app__icon" style="background: rgba(59,130,246,0.08);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div><div class="mini-app__name">DukaBooks</div><div class="mini-app__dev">by FinLab Africa</div></div></div>
+                <div class="mini-app"><div class="mini-app__icon" style="background: rgba(249,115,22,0.08);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5"/></svg></div><div><div class="mini-app__name">Shamba AI</div><div class="mini-app__dev">by AgriTech Co</div></div></div>
+                <div class="mini-app"><div class="mini-app__icon" style="background: rgba(168,85,247,0.08);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg></div><div><div class="mini-app__name">TafsiriAI</div><div class="mini-app__dev">by LangTech</div></div></div>
+                <div class="mini-app"><div class="mini-app__icon" style="background: rgba(236,72,153,0.08);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ec4899" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a4 4 0 0 0-8 0v2"/></svg></div><div><div class="mini-app__name">Kazi Match</div><div class="mini-app__dev">by JobsNG</div></div></div>
+              </div>
+              <div style="margin-top: 1rem; background: rgba(255,26,26,0.04); border: 1px solid rgba(255,26,26,0.08); border-radius: 0.75rem; padding: 0.6rem 0.75rem; display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <div style="font-size: 0.55rem; color: var(--primary-color); font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em;">AI Tokens</div>
+                  <div style="font-family: var(--font-headline); font-weight: 900; font-size: 0.9rem; color: var(--text-primary);">3,240 remaining</div>
+                </div>
+                <div style="background: var(--primary-color); color: white; border-radius: 1rem; padding: 0.35rem 0.75rem; font-size: 0.58rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;">Top up</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="yt-section yt-light" style="padding-top: 0;">
+    <div class="yt-container">
+      <div class="showcase showcase--reverse yt-fade-in">
+        <div class="portal-frame">
+          <div class="portal-screen">
+            <div class="portal-bar">
+              <div class="portal-dot"></div><div class="portal-dot"></div><div class="portal-dot"></div>
+              <div class="portal-url">developers.telecom.co/dashboard</div>
+            </div>
+            <div class="portal-body">
+              <div class="portal-sidebar">
+                <div class="portal-nav">
+                  <div class="portal-nav-item portal-nav-item--active">Dashboard</div>
+                  <div class="portal-nav-item">API Keys</div>
+                  <div class="portal-nav-item">Billing</div>
+                  <div class="portal-nav-item">Analytics</div>
+                  <div class="portal-nav-item">Docs</div>
+                </div>
+                <div>
+                  <div class="portal-stat-row">
+                    <div class="portal-stat"><div class="portal-stat__val">47.2K</div><div class="portal-stat__lbl">Monthly users</div></div>
+                    <div class="portal-stat"><div class="portal-stat__val">$8,430</div><div class="portal-stat__lbl">Revenue (your 70%)</div></div>
+                    <div class="portal-stat"><div class="portal-stat__val">1.2M</div><div class="portal-stat__lbl">API calls</div></div>
+                  </div>
+                  <div style="font-size: 0.62rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 0.5rem;">Quick start</div>
+                  <div class="code-block"><span class="code-comment">// Initialize AI inference via telecom API</span>
+<span class="code-key">const</span> ai = <span class="code-key">new</span> <span class="code-method">TelecomAI</span>({
+  <span class="code-key">apiKey</span>: <span class="code-string">'sk_live_...'</span>,
+  <span class="code-key">model</span>: <span class="code-string">'llama-3-70b-local'</span>,
+  <span class="code-key">billing</span>: <span class="code-string">'carrier'</span>
+});
+
+<span class="code-key">const</span> response = <span class="code-key">await</span> ai.<span class="code-method">chat</span>({
+  <span class="code-key">user</span>: <span class="code-string">'msisdn:+254...'</span>,
+  <span class="code-key">message</span>: prompt,
+  <span class="code-key">lang</span>: <span class="code-string">'sw'</span>
+});</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="product-label">Developer experience</div>
+          <div class="product-title">Developer Portal &amp; API</div>
+          <div class="product-desc">Your developer portal is where the ecosystem gets built. Developers register, get API keys, and start building AI mini-apps in hours. They access your local inference models, your billing API, and your distribution channels — all through a single SDK.</div>
+          <ul class="vp-list">
+            <li class="vp-item">
+              <div class="vp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#FF1A1A" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+              <div><div class="vp-text__title">One SDK for everything</div><div class="vp-text__desc">Inference, billing, user auth via MSISDN, USSD gateway, push notifications — one integration</div></div>
+            </li>
+            <li class="vp-item">
+              <div class="vp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#FF1A1A" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+              <div><div class="vp-text__title">Automatic revenue sharing</div><div class="vp-text__desc">Developer gets 70%, telecom keeps 30% — settled daily to mobile money</div></div>
+            </li>
+            <li class="vp-item">
+              <div class="vp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#FF1A1A" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+              <div><div class="vp-text__title">Local inference models included</div><div class="vp-text__desc">Developers do not need their own GPU budget — your infrastructure provides the compute</div></div>
+            </li>
+            <li class="vp-item">
+              <div class="vp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#FF1A1A" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+              <div><div class="vp-text__title">Distribution built in</div><div class="vp-text__desc">Featured placement in the mini-app store, push to millions of subscribers</div></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="yt-section yt-dark">
+    <div class="yt-container">
+      <div class="yt-fade-in" style="text-align: center; max-width: 40rem; margin: 0 auto;">
+        <p class="yt-label" style="color: var(--primary-color); margin-bottom: 1.5rem;">Network Effects</p>
+        <h2 class="yt-h2" style="text-transform: uppercase;">The platform flywheel</h2>
+        <p class="yt-body" style="margin-top: 1.25rem; color: rgba(245,245,245,0.6);">Building your own apps gives you linear growth. A platform gives you compounding network effects — the same loop that made M-Pesa, the App Store, and Shopify dominant.</p>
+      </div>
+      <div class="flywheel yt-fade-in">
+        <div class="flywheel-step"><div class="flywheel-step__num">1</div><div><div class="flywheel-step__title">Telecom launches AI developer platform with local inference and carrier billing API</div><div class="flywheel-step__desc">You invest once in the infrastructure and the developer portal. This is the seed.</div></div></div>
+        <div class="flywheel-step"><div class="flywheel-step__num">2</div><div><div class="flywheel-step__title">Developers build AI mini-apps for local markets (tutors, health, agri, finance)</div><div class="flywheel-step__desc">They come because you offer what no hyperscaler can: carrier billing, USSD access, mobile money settlement, and 100M+ users.</div></div></div>
+        <div class="flywheel-step"><div class="flywheel-step__num">3</div><div><div class="flywheel-step__title">Consumers discover and pay for AI services — via airtime, mobile money, or bundled tokens</div><div class="flywheel-step__desc">No credit card, no app download. Frictionless. 800M+ unbanked users can participate.</div></div></div>
+        <div class="flywheel-step"><div class="flywheel-step__num">4</div><div><div class="flywheel-step__title">More users attract more developers. More developers attract more users.</div><div class="flywheel-step__desc">This is the compounding loop. Every new developer makes the platform more valuable for consumers, and vice versa.</div></div></div>
+        <div class="flywheel-step"><div class="flywheel-step__num">5</div><div><div class="flywheel-step__title">All inference flows through your GPUs. All billing flows through your ledger.</div><div class="flywheel-step__desc">You take 20-30% of every AI transaction in your market. And you control the infrastructure.</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="yt-section yt-light">
+    <div class="yt-container">
+      <div class="yt-fade-in" style="text-align: center; max-width: 40rem; margin: 0 auto;">
+        <p class="yt-label" style="color: var(--primary-color); margin-bottom: 1.5rem;">Platform Economics</p>
+        <h2 class="yt-h2" style="text-transform: uppercase;">Your margin structure</h2>
+        <p class="yt-body" style="margin-top: 1rem; color: var(--text-secondary);">Every AI transaction on the platform generates revenue for you — without building a single product.</p>
+      </div>
+      <div class="econ-grid yt-fade-in">
+        <div class="econ-card"><div class="econ-card__value">20-30%</div><div class="econ-card__label">Platform take rate</div><div class="econ-card__desc">On every AI mini-app transaction — comparable to App Store (30%), Shopify (2.9% + subscription), and M-Pesa (variable per transaction type).</div></div>
+        <div class="econ-card"><div class="econ-card__value">$0</div><div class="econ-card__label">Product development cost</div><div class="econ-card__desc">Developers build the apps. You build the rails once and scale horizontally. Marginal cost of adding a new AI service to the platform approaches zero.</div></div>
+        <div class="econ-card"><div class="econ-card__value">2x</div><div class="econ-card__label">Revenue compounding</div><div class="econ-card__desc">You earn on both sides: platform fee on the transaction AND inference margin on the AI tokens consumed. Two revenue streams from one user action.</div></div>
+      </div>
+      <div class="yt-fade-in" style="margin-top: 3rem; max-width: 48rem;">
+        <div style="background: white; border-radius: var(--radius-card); padding: 2.5rem;">
+          <div style="font-size: 0.72rem; font-weight: 500; letter-spacing: var(--letter-spacing-ui); text-transform: uppercase; color: var(--primary-color); margin-bottom: 1.5rem;">Example unit economics — 10M active users</div>
+          <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+            <div style="display: flex; justify-content: space-between; padding-bottom: 0.75rem; border-bottom: 1px solid rgba(196,196,196,0.2);"><span style="font-size: 0.82rem; color: var(--text-secondary);">Monthly active AI users (10% of subscribers)</span><span style="font-size: 0.82rem; font-weight: 500; color: var(--text-primary);">10M</span></div>
+            <div style="display: flex; justify-content: space-between; padding-bottom: 0.75rem; border-bottom: 1px solid rgba(196,196,196,0.2);"><span style="font-size: 0.82rem; color: var(--text-secondary);">Average spend per user per month (AI tokens + subscriptions)</span><span style="font-size: 0.82rem; font-weight: 500; color: var(--text-primary);">$0.80</span></div>
+            <div style="display: flex; justify-content: space-between; padding-bottom: 0.75rem; border-bottom: 1px solid rgba(196,196,196,0.2);"><span style="font-size: 0.82rem; color: var(--text-secondary);">Gross monthly transaction volume</span><span style="font-size: 0.82rem; font-weight: 500; color: var(--text-primary);">$8.0M</span></div>
+            <div style="display: flex; justify-content: space-between; padding-bottom: 0.75rem; border-bottom: 1px solid rgba(196,196,196,0.2);"><span style="font-size: 0.82rem; color: var(--text-secondary);">Platform take (25%)</span><span style="font-size: 0.82rem; font-weight: 500; color: var(--text-primary);">$2.0M / month</span></div>
+            <div style="display: flex; justify-content: space-between; padding-bottom: 0.75rem; border-bottom: 1px solid rgba(196,196,196,0.2);"><span style="font-size: 0.82rem; color: var(--text-secondary);">Inference margin (on tokens consumed through your GPUs)</span><span style="font-size: 0.82rem; font-weight: 500; color: var(--text-primary);">$1.2M / month</span></div>
+            <div style="display: flex; justify-content: space-between; padding-top: 0.5rem;"><span style="font-size: 0.875rem; font-weight: 600; color: var(--text-primary);">Combined monthly revenue</span><span style="font-family: var(--font-headline); font-weight: 900; font-size: 1.25rem; color: var(--primary-color);">$3.2M</span></div>
+            <div style="margin-top: 0.25rem; text-align: right;"><span style="font-size: 0.72rem; color: var(--text-secondary);">$38.4M annualized — and growing with the flywheel</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="yt-section yt-dark">
+    <div class="yt-container" style="text-align: center;">
+      <div class="yt-fade-in">
+        <h2 class="yt-h2" style="text-transform: uppercase;">Be the platform.<br>Not the app.</h2>
+        <p class="yt-body" style="margin-top: 1.5rem; color: rgba(245,245,245,0.6); max-width: 34rem; margin-left: auto; margin-right: auto;">Yango Tech builds the AI distribution platform — developer portal, billing APIs, inference layer, mini-app marketplace — so your telecom becomes the AI gateway for your entire market.</p>
+        <div style="margin-top: 3rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="index.html#contact" class="yt-btn yt-btn--primary">Build your AI platform</a>
+          <a href="research.html" class="yt-btn yt-btn--outline" style="border-color: rgba(255,255,255,0.3); color: white;">See the research</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="yt-footer">
+    <div class="yt-container">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 2rem;">
+        <a href="index.html"><img src="https://avatars.mds.yandex.net/get-lpc/14837328/21641dca-3288-4eeb-8d99-81f8cb31a763/orig" alt="Yango Tech" width="176" height="30" style="filter: invert(1);"></a>
+        <div style="display: flex; gap: 3.75rem; flex-wrap: wrap;">
+          <div>
+            <p class="yt-label" style="margin-bottom: 1rem; opacity: 0.5;">Pages</p>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.75rem;">
+              <li><a href="index.html" class="yt-label--sentence">Strategic thesis</a></li>
+              <li><a href="use-cases.html" class="yt-label--sentence">Use cases</a></li>
+              <li><a href="b2b.html" class="yt-label--sentence">B2B offering</a></li>
+              <li><a href="b2c.html" class="yt-label--sentence">B2C offering</a></li>
+              <li><a href="research.html" class="yt-label--sentence">Research &amp; sources</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="yt-footer__bottom"><span class="yt-label" style="opacity: 0.5;">&copy; 2026 Yango Tech</span></div>
+    </div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('yt-visible'); }); }, { threshold: 0.1 });
+    document.querySelectorAll('.yt-fade-in').forEach(el => observer.observe(el));
+    const nav = document.getElementById('nav');
+    const heroSection = document.querySelector('.page-hero');
+    window.addEventListener('scroll', () => { nav.classList.toggle('yt-nav--dark', window.scrollY > heroSection.offsetHeight - 100); });
+  </script>
+</body>
+</html>

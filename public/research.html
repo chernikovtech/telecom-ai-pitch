@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Research &amp; Sources — Telecom × AI — Yango Tech</title>
+  <meta name="description" content="Research backing the telecom AI thesis — from McKinsey, BCG, NVIDIA, GSMA, Deloitte, and more.">
+  <link rel="preload" as="font" href="https://yastatic.net/s3/distribution/lpc/fonts/YangoHeadline/YangoHeadline.woff2" crossorigin="anonymous">
+  <link rel="preload" as="font" href="https://yastatic.net/s3/distribution/lpc/fonts/YangoGroupText/YangoGroupText-Regular.woff2" crossorigin="anonymous">
+  <link rel="preload" as="font" href="https://yastatic.net/s3/distribution/lpc/fonts/YangoGroupText/YangoGroupText-Medium.woff2" crossorigin="anonymous">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23FF1A1A' width='100' height='100' rx='20'/></svg>">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .page-hero { position: relative; min-height: 60vh; display: flex; align-items: center; background: #000; color: var(--text-on-dark); overflow: hidden; padding-top: 8rem; padding-bottom: 4rem; }
+    .page-hero__bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 50%, rgba(255,26,26,0.08) 0%, transparent 50%), #000; }
+    .page-hero__content { position: relative; z-index: 1; }
+
+    .source-section { margin-bottom: 5rem; }
+    .source-section__title {
+      font-family: var(--font-headline); font-weight: 900;
+      font-size: clamp(1.25rem, 2vw, 1.75rem); line-height: 90%;
+      letter-spacing: var(--letter-spacing-headline); text-transform: uppercase;
+      color: var(--text-primary); margin-bottom: 2rem;
+      padding-bottom: 1rem; border-bottom: 2px solid var(--primary-color);
+    }
+
+    .source-card {
+      background: white; border-radius: var(--radius-card); padding: 2rem;
+      margin-bottom: 1.5rem; transition: var(--transition-fast);
+    }
+    .source-card:hover { transform: translateY(-2px); }
+    .source-card__header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap; }
+    .source-card__org {
+      font-size: 0.72rem; font-weight: 500; letter-spacing: var(--letter-spacing-ui);
+      text-transform: uppercase; color: var(--primary-color);
+    }
+    .source-card__date {
+      font-size: 0.72rem; font-weight: 500; letter-spacing: var(--letter-spacing-ui);
+      text-transform: uppercase; color: var(--text-secondary);
+    }
+    .source-card__title {
+      font-family: var(--font-headline); font-weight: 900;
+      font-size: 1.1rem; line-height: 95%; letter-spacing: var(--letter-spacing-headline);
+      text-transform: uppercase; color: var(--text-primary); margin-bottom: 0.75rem;
+    }
+    .source-card__excerpt {
+      font-size: 0.875rem; letter-spacing: var(--letter-spacing-body);
+      color: var(--text-secondary); line-height: 1.6; margin-bottom: 1rem;
+    }
+    .source-card__link {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.72rem; font-weight: 500; letter-spacing: var(--letter-spacing-ui);
+      text-transform: uppercase; color: var(--primary-color);
+    }
+    .source-card__link:hover { color: var(--text-primary); }
+    .source-card__link svg { width: 0.75rem; height: 0.75rem; }
+
+    .key-stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-bottom: 5rem; }
+    .key-stat { background: white; border-radius: var(--radius-card); padding: 2rem; text-align: center; }
+    .key-stat__value { font-family: var(--font-headline); font-weight: 900; font-size: 2rem; color: var(--text-primary); line-height: 1; }
+    .key-stat__label { font-size: 0.72rem; font-weight: 500; letter-spacing: var(--letter-spacing-ui); text-transform: uppercase; color: var(--text-secondary); margin-top: 0.5rem; }
+    .key-stat__source { font-size: 0.62rem; color: var(--text-secondary); margin-top: 0.5rem; letter-spacing: var(--letter-spacing-body); }
+    @media (max-width: 1024px) { .key-stat-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 768px) { .key-stat-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="yt-nav" id="nav">
+    <div class="yt-nav__inner">
+      <a href="index.html" class="yt-nav__logo"><img src="https://avatars.mds.yandex.net/get-lpc/14837328/21641dca-3288-4eeb-8d99-81f8cb31a763/orig" alt="Yango Tech" width="176" height="30" loading="eager"></a>
+      <ul class="yt-nav__links">
+        <li><a class="yt-nav__link" href="index.html">Thesis</a></li>
+        <li><a class="yt-nav__link" href="use-cases.html">Use Cases</a></li>
+        <li><a class="yt-nav__link" href="b2b.html">B2B Offering</a></li>
+        <li><a class="yt-nav__link" href="b2c.html">B2C Offering</a></li>
+        <li><a class="yt-nav__link yt-nav__link--active" href="research.html">Research</a></li>
+        <li><a class="yt-btn yt-btn--dark" href="index.html#contact">Talk to an expert</a></li>
+      </ul>
+      <button class="mobile-toggle" onclick="document.querySelector('.yt-nav__links').classList.toggle('open')" aria-label="Menu"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="page-hero__bg"></div>
+    <div class="page-hero__content yt-container">
+      <p class="yt-label" style="color: var(--primary-color); margin-bottom: 1.5rem;">Deep Research</p>
+      <h1 class="yt-h1" style="max-width: 48rem; text-transform: uppercase;">The evidence base</h1>
+      <p class="yt-body" style="margin-top: 2rem; max-width: 36rem; color: rgba(245,245,245,0.6);">
+        Every claim in our thesis is backed by research from McKinsey, BCG, Deloitte, GSMA, NVIDIA, and independent analysts. Here are the key sources.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- KEY STATS -->
+  <section class="yt-section yt-light">
+    <div class="yt-container">
+      <div class="yt-fade-in">
+        <p class="yt-label" style="color: var(--primary-color); margin-bottom: 1.5rem;">Key Data Points</p>
+        <h2 class="yt-h2" style="text-transform: uppercase; margin-bottom: 3rem;">The numbers behind the thesis</h2>
+      </div>
+
+      <div class="key-stat-grid yt-fade-in">
+        <div class="key-stat">
+          <div class="key-stat__value">60–70%</div>
+          <div class="key-stat__label">AI workloads as real-time inference by 2030</div>
+          <div class="key-stat__source">McKinsey, 2025</div>
+        </div>
+        <div class="key-stat">
+          <div class="key-stat__value">$700B+</div>
+          <div class="key-stat__label">Hyperscaler AI capex budget 2026</div>
+          <div class="key-stat__source">Fortune / NVIDIA earnings, 2026</div>
+        </div>
+        <div class="key-stat">
+          <div class="key-stat__value">1%</div>
+          <div class="key-stat__label">Telecom revenue growth 2010–2023</div>
+          <div class="key-stat__source">McKinsey Telco AI Report, 2025</div>
+        </div>
+        <div class="key-stat">
+          <div class="key-stat__value">$150B</div>
+          <div class="key-stat__label">AI venture investment 2025</div>
+          <div class="key-stat__source">NVIDIA GTC 2026 Keynote</div>
+        </div>
+        <div class="key-stat">
+          <div class="key-stat__value">75–80%</div>
+          <div class="key-stat__label">Telco AI deployments targeting cost cuts only</div>
+          <div class="key-stat__source">GSMA AI Report, 2025</div>
+        </div>
+        <div class="key-stat">
+          <div class="key-stat__value">$100B+</div>
+          <div class="key-stat__label">Gulf + Africa AI/DC investment committed</div>
+          <div class="key-stat__source">Global Data Center Hub, 2026</div>
+        </div>
+        <div class="key-stat">
+          <div class="key-stat__value">1.5–2.2 GW</div>
+          <div class="key-stat__label">Africa DC capacity projected by 2030</div>
+          <div class="key-stat__source">McKinsey Africa DC Report, 2025</div>
+        </div>
+        <div class="key-stat">
+          <div class="key-stat__value">$9.4B</div>
+          <div class="key-stat__label">Indonesia DC market by 2030</div>
+          <div class="key-stat__source">Next Move Strategy Consulting</div>
+        </div>
+      </div>
+
+
+      <!-- STRATEGY HOUSES -->
+      <div class="source-section yt-fade-in">
+        <div class="source-section__title">Strategy consulting &amp; research firms</div>
+
+        <div class="source-card">
+          <div class="source-card__header">
+            <div class="source-card__org">McKinsey &amp; Company</div>
+            <div class="source-card__date">February 2026</div>
+          </div>
+          <div class="source-card__title">Telcos' AI inflection point: What leaders do to capture value</div>
+          <div class="source-card__excerpt">
+            Based on a December 2025 survey of 49 telecom CxOs globally. Key finding: most telcos have failed to generate real value from fragmented AI pilots, but forward-thinking operators are showing how agentic AI can be a paradigm shift. McKinsey notes that telecom revenue grew just 1% from 2010–2023 despite 60% annual growth in mobile data traffic.
+          </div>
+          <a href="https://www.mckinsey.com/industries/technology-media-and-telecommunications/our-insights/telcos-ai-inflection-point-what-leaders-do-to-capture-value" target="_blank" class="source-card__link">
+            Read on McKinsey.com <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+
+        <div class="source-card">
+          <div class="source-card__header">
+            <div class="source-card__org">McKinsey &amp; Company</div>
+            <div class="source-card__date">November 2025</div>
+          </div>
+          <div class="source-card__title">Building data centers for Africa's unique market dynamics</div>
+          <div class="source-card__excerpt">
+            Projects that Africa's top 5 data center markets will grow from approximately 400 MW today to 1.5–2.2 GW by 2030. Identifies major bottlenecks in power, fiber, and financing. Notes that McKinsey's model anticipates AI as a significant demand accelerator for African DC capacity.
+          </div>
+          <a href="https://www.mckinsey.com/industries/technology-media-and-telecommunications/our-insights" target="_blank" class="source-card__link">
+            Read on McKinsey.com <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+
+        <div class="source-card">
+          <div class="source-card__header">
+            <div class="source-card__org">BCG (Boston Consulting Group)</div>
+            <div class="source-card__date">February 2026</div>
+          </div>
+          <div class="source-card__title">The AI-First Telecommunications Strategy</div>
+          <div class="source-card__excerpt">
+            BCG argues that telco CEOs must move beyond cost-cutting AI pilots to an enterprise-wide strategy focused on value creation. BCG's 10-20-70 framework emphasizes that algorithms account for only 10% of AI success — the rest is data (20%) and organizational change (70%).
+          </div>
+          <a href="https://www.bcg.com/publications/2026/the-ai-first-telecommunications-strategy" target="_blank" class="source-card__link">
+            Read on BCG.com <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+
+        <div class="source-card">
+          <div class="source-card__header">
+            <div class="source-card__org">Deloitte</div>
+            <div class="source-card__date">June 2025</div>
+          </div>
+          <div class="source-card__title">Agentic AI Blueprint for Telcos — $150B value unlock</div>
+          <div class="source-card__excerpt">
+            Deloitte's blueprint helps telecom organizations scale and accelerate AI transformation. Estimates $150 billion in value can be unlocked through agentic AI across network management, service delivery, and customer care. Advocates "split inference" for privacy-first on-device processing.
+          </div>
+          <a href="https://www.prnewswire.com/news-releases/deloitte-launches-agentic-ai-blueprint-to-help-unlock-us150-billion-in-value-for-telecom-organizations-302484415.html" target="_blank" class="source-card__link">
+            Read press release <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+
+        <div class="source-card">
+          <div class="source-card__header">
+            <div class="source-card__org">Stelia / Big Five Consultancy Analysis</div>
+            <div class="source-card__date">April 2025</div>
+          </div>
+          <div class="source-card__title">Big Five Consultancies Shape the Future of Distributed AI Inference</div>
+          <div class="source-card__excerpt">
+            Analysis of how McKinsey, PwC, BCG, Deloitte, and KPMG are approaching distributed AI inference. McKinsey projects 60–70% of all AI workloads will be real-time inference by 2030. PwC advocates a three-tiered portfolio approach. Deloitte forecasts 30% of smartphones and 50% of PCs will have local AI processing by end of 2025.
+          </div>
+          <a href="https://newsroom.stelia.ai/big-five-consultancies-shape-the-future-of-distributed-ai-inference-in-2025/" target="_blank" class="source-card__link">
+            Read on Stelia.ai <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+      </div>
+
+
+      <!-- NVIDIA / INDUSTRY -->
+      <div class="source-section yt-fade-in">
+        <div class="source-section__title">NVIDIA &amp; industry leadership</div>
+
+        <div class="source-card">
+          <div class="source-card__header">
+            <div class="source-card__org">NVIDIA — GTC 2025 Keynote</div>
+            <div class="source-card__date">March 2025</div>
+          </div>
+          <div class="source-card__title">Jensen Huang: $100B annual radio network capex will be "accelerated computing infused with AI"</div>
+          <div class="source-card__excerpt">
+            Jensen Huang announced NVIDIA's partnership with Cisco, T-Mobile, and Cerberus ODC to build AI-native radio networks. He stated that annual global capex in radio networks exceeds $100 billion, and this will inevitably shift to accelerated computing with embedded AI. NVIDIA also introduced the Aerial RAN computer for AI-native 6G networks.
+          </div>
+          <a href="https://www.rev.com/transcripts/gtc-keynote-with-nvidia-ceo-jensen-huang" target="_blank" class="source-card__link">
+            Read GTC 2025 transcript <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+
+        <div class="source-card">
+          <div class="source-card__header">
+            <div class="source-card__org">NVIDIA — GTC 2026</div>
+            <div class="source-card__date">March 2026</div>
+          </div>
+          <div class="source-card__title">$1 trillion in NVIDIA revenue from 2025–2027; computing demand up 1 million times</div>
+          <div class="source-card__excerpt">
+            At GTC 2026, Huang surveyed the accelerated computing ecosystem across automotive, financial services, healthcare, industrial, media, quantum, retail, robotics, and telecom. He cited $150 billion in AI venture investment and noted computing demand has increased approximately 1 million times over recent years.
+          </div>
+          <a href="https://blogs.nvidia.com/blog/gtc-2026-news/" target="_blank" class="source-card__link">
+            Read NVIDIA GTC 2026 recap <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+
+        <div class="source-card">
+          <div class="source-card__header">
+            <div class="source-card__org">NVIDIA — Computex 2025 Keynote</div>
+            <div class="source-card__date">May 2025</div>
+          </div>
+          <div class="source-card__title">"AI is now infrastructure... these AI data centers are AI factories that produce tokens"</div>
+          <div class="source-card__excerpt">
+            Jensen Huang at Computex 2025 declared AI infrastructure will be worth trillions of dollars. He described AI data centers as "factories" that convert energy into tokens — the building blocks of AI value. This reframes the telecom opportunity: telecoms can own these token factories.
+          </div>
+          <a href="https://blogs.nvidia.com/blog/computex-2025-jensen-huang/" target="_blank" class="source-card__link">
+            Read on NVIDIA Blog <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+
+        <div class="source-card">
+          <div class="source-card__header">
+            <div class="source-card__org">Fortune</div>
+            <div class="source-card__date">February 2026</div>
+          </div>
+          <div class="source-card__title">NVIDIA's $700B AI capex is just the start — and telecoms are part of the picture</div>
+          <div class="source-card__excerpt">
+            Reports that hyperscalers are budgeting nearly $700 billion in capex for 2026. Meta plans up to $135 billion, Google up to $185 billion. NVIDIA's revenue increased 73% to $68.1 billion in Q4 2025. The question Jensen Huang is now answering: who beyond hyperscalers will drive the next wave of AI infrastructure demand?
+          </div>
+          <a href="https://fortune.com/2026/02/25/nvidia-jensen-huang-big-tech-ai-infrastructure-700-billion-just-the-start/" target="_blank" class="source-card__link">
+            Read on Fortune <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+      </div>
+
+
+      <!-- TELECOM & MARKET REPORTS -->
+      <div class="source-section yt-fade-in">
+        <div class="source-section__title">Telecom &amp; market intelligence</div>
+
+        <div class="source-card">
+          <div class="source-card__header">
+            <div class="source-card__org">GSMA Intelligence</div>
+            <div class="source-card__date">August 2025</div>
+          </div>
+          <div class="source-card__title">Telcos drive AI deployments for cost savings, gear up for revenue growth</div>
+          <div class="source-card__excerpt">
+            Analysis of 250 operators globally. 75–80% of AI deployments target cost cuts; only 10–20% focus on revenue generation. Early revenue-driving use cases like GPU-as-a-Service and agentic AI are expected to grow in 2025–2026. About 60% of deployments are live. Asia Pacific leads with ~4 projects per operator.
+          </div>
+          <a href="https://telecomlead.com/telecom-services/gsma-report-telcos-drive-ai-deployments-for-cost-savings-gear-up-for-revenue-growth-122129" target="_blank" class="source-card__link">
+            Read summary <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+
+        <div class="source-card">
+          <div class="source-card__header">
+            <div class="source-card__org">Global Data Center Hub</div>
+            <div class="source-card__date">January 2026</div>
+          </div>
+          <div class="source-card__title">Middle East &amp; Africa: $100B+ AI and data center buildout</div>
+          <div class="source-card__excerpt">
+            Documents $100B+ in AI and data center commitments across the Gulf, North Africa, and select Sub-Saharan markets. Telecom-led platforms are gaining relevance relative to pure-play developers — control over fiber, landing stations, and regulated infrastructure gives telcos structural advantages.
+          </div>
+          <a href="https://www.globaldatacenterhub.com/p/middle-east-and-africa-100b-ai-and" target="_blank" class="source-card__link">
+            Read on Global Data Center Hub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+
+        <div class="source-card">
+          <div class="source-card__header">
+            <div class="source-card__org">Datacenters.com</div>
+            <div class="source-card__date">2025</div>
+          </div>
+          <div class="source-card__title">Emerging data center markets: Southeast Asia and Africa</div>
+          <div class="source-card__excerpt">
+            Analysts forecast over $100 billion in emerging market data center investment by 2030. Identifies Jakarta, Nairobi, Accra, and Lagos as key growth cities. Notes that sovereign funds are co-investing in sovereign cloud infrastructure as part of national AI strategies. Over 270 million people in Indonesia alone creating urgent demand.
+          </div>
+          <a href="https://www.datacenters.com/news/emerging-data-center-markets-in-2025-opportunities-in-southeast-asia-and-africa" target="_blank" class="source-card__link">
+            Read on Datacenters.com <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+
+        <div class="source-card">
+          <div class="source-card__header">
+            <div class="source-card__org">U.S. International Trade Administration</div>
+            <div class="source-card__date">2025</div>
+          </div>
+          <div class="source-card__title">Indonesia ICT market: $13.4B telecom, $3.79B data center by 2030</div>
+          <div class="source-card__excerpt">
+            Indonesia's telecom market valued at approximately $13.4 billion in 2025. Data center market projected to reach $3.79 billion by 2030 at 7.99% CAGR. Three major operators — Telkomsel, Indosat, and XLSmart — dominate. Jakarta is the primary DC hub with Batam emerging as a strategic alternative.
+          </div>
+          <a href="https://www.trade.gov/country-commercial-guides/indonesia-information-and-telecommunications-technology" target="_blank" class="source-card__link">
+            Read on Trade.gov <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+
+        <div class="source-card">
+          <div class="source-card__header">
+            <div class="source-card__org">TechCabal</div>
+            <div class="source-card__date">December 2025</div>
+          </div>
+          <div class="source-card__title">Why 2025 marked a turning point for African telecoms</div>
+          <div class="source-card__excerpt">
+            Comprehensive review of African telecom developments: Safaricom grew 5G to 1,700 sites covering 30% of Kenya's population. MTN's Bayobab targeting 135,000 km of fibre. Vodacom acquiring 30% of Maziv for $790M. Nigerian operators unlocked over $1 billion in new infrastructure spending following tariff resets.
+          </div>
+          <a href="https://techcabal.com/2025/12/23/how-pricing-fibre-and-5g-collided-in-african-telecoms-in-2025/" target="_blank" class="source-card__link">
+            Read on TechCabal <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+      </div>
+
+
+      <!-- OPERATOR EXAMPLES -->
+      <div class="source-section yt-fade-in">
+        <div class="source-section__title">Operator case studies</div>
+
+        <div class="source-card">
+          <div class="source-card__header">
+            <div class="source-card__org">Safaricom / Tech in Africa</div>
+            <div class="source-card__date">February 2026</div>
+          </div>
+          <div class="source-card__title">Safaricom Innovation Strategy 2026: $500M AI investment</div>
+          <div class="source-card__excerpt">
+            Safaricom committed $500 million over three years for AI-ready infrastructure across East Africa. Partnered with iXAfrica for 22.5 MW NBOX1 Nairobi Campus. Deployed Zuri AI chatbot for 30M+ M-Pesa users. Achieved 89% accuracy in fraud detection using graph neural networks with AWS. Trained 5,000 employees in AI.
+          </div>
+          <a href="https://www.techinafrica.com/safaricom-innovation-strategy-2026-ai-m-pesa-kenya-startup-growth/" target="_blank" class="source-card__link">
+            Read on Tech in Africa <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+
+        <div class="source-card">
+          <div class="source-card__header">
+            <div class="source-card__org">MTN Group</div>
+            <div class="source-card__date">November 2025</div>
+          </div>
+          <div class="source-card__title">MTN and Microsoft expand access to AI-powered tools across Africa</div>
+          <div class="source-card__excerpt">
+            Africa's largest mobile operator (300M+ subscribers) partnered with Microsoft to democratize AI access across the continent. The partnership positions MTN as an AI distribution channel — using its existing subscriber base and billing infrastructure to deliver Microsoft's AI tools to African businesses and consumers.
+          </div>
+          <a href="https://www.mtn.com/mtn-and-microsoft-expand-access-to-ai-powered-tools-across-africa/" target="_blank" class="source-card__link">
+            Read on MTN.com <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+
+        <div class="source-card">
+          <div class="source-card__header">
+            <div class="source-card__org">CNBC</div>
+            <div class="source-card__date">July 2025</div>
+          </div>
+          <div class="source-card__title">How Huawei ascended from telecoms to become China's AI leader</div>
+          <div class="source-card__excerpt">
+            Analysis of how Huawei evolved from a telecoms equipment company to a full-stack AI leader — building Ascend chips, AI CloudMatrix data centers, Pangu industry-specific AI models, and Huawei Cloud. Revenues in 2024 rose 22.4% to 862 billion yuan. Jensen Huang himself called Huawei "one of the most formidable technology companies in the world."
+          </div>
+          <a href="https://www.cnbc.com/2025/07/21/how-huawei-ascend-telecoms-to-china-jack-all-trades-ai-leader-penghu-chips-nvidia-cloud-matrix.html" target="_blank" class="source-card__link">
+            Read on CNBC <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CTA -->
+  <section class="yt-section yt-dark">
+    <div class="yt-container" style="text-align: center;">
+      <div class="yt-fade-in">
+        <h2 class="yt-h2" style="text-transform: uppercase;">The evidence is clear.<br>The window is now.</h2>
+        <p class="yt-body" style="margin-top: 1.5rem; color: rgba(245,245,245,0.6); max-width: 32rem; margin-left: auto; margin-right: auto;">
+          Telecoms will either become AI distributors — or be disintermediated by those who do.
+        </p>
+        <a href="index.html#contact" class="yt-btn yt-btn--primary" style="margin-top: 3rem;">Talk to an expert</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="yt-footer">
+    <div class="yt-container">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 2rem;">
+        <a href="index.html"><img src="https://avatars.mds.yandex.net/get-lpc/14837328/21641dca-3288-4eeb-8d99-81f8cb31a763/orig" alt="Yango Tech" width="176" height="30" style="filter: invert(1);"></a>
+        <div style="display: flex; gap: 3.75rem; flex-wrap: wrap;">
+          <div>
+            <p class="yt-label" style="margin-bottom: 1rem; opacity: 0.5;">Pages</p>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.75rem;">
+              <li><a href="index.html" class="yt-label--sentence">Strategic thesis</a></li>
+              <li><a href="use-cases.html" class="yt-label--sentence">Use cases</a></li>
+              <li><a href="b2b.html" class="yt-label--sentence">B2B offering</a></li>
+              <li><a href="b2c.html" class="yt-label--sentence">B2C offering</a></li>
+              <li><a href="research.html" class="yt-label--sentence">Research &amp; sources</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="yt-footer__bottom"><span class="yt-label" style="opacity: 0.5;">&copy; 2026 Yango Tech</span></div>
+    </div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('yt-visible'); }); }, { threshold: 0.1 });
+    document.querySelectorAll('.yt-fade-in').forEach(el => observer.observe(el));
+    const nav = document.getElementById('nav');
+    const heroSection = document.querySelector('.page-hero');
+    window.addEventListener('scroll', () => { nav.classList.toggle('yt-nav--dark', window.scrollY > heroSection.offsetHeight - 100); });
+  </script>
+</body>
+</html>

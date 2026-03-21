@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Telecom × AI — Yango Tech</title>
+  <meta name="description" content="Telecoms will either become AI distributors — or be disintermediated by those who do. Yango Tech enables the transition.">
+  <link rel="preload" as="font" href="https://yastatic.net/s3/distribution/lpc/fonts/YangoHeadline/YangoHeadline.woff2" crossorigin="anonymous">
+  <link rel="preload" as="font" href="https://yastatic.net/s3/distribution/lpc/fonts/YangoGroupText/YangoGroupText-Regular.woff2" crossorigin="anonymous">
+  <link rel="preload" as="font" href="https://yastatic.net/s3/distribution/lpc/fonts/YangoGroupText/YangoGroupText-Medium.woff2" crossorigin="anonymous">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23FF1A1A' width='100' height='100' rx='20'/></svg>">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    /* === HERO PARTICLES === */
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(255,26,26,0.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(255,26,26,0.06) 0%, transparent 40%),
+        #000;
+    }
+    .hero-grid::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    /* === STAT ROW === */
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      margin-top: 4rem;
+    }
+    .stat-item { text-align: left; }
+    .stat-value {
+      font-family: var(--font-headline);
+      font-weight: 900;
+      font-size: clamp(2rem, 3.5vw, 3.5rem);
+      line-height: 90%;
+      letter-spacing: var(--letter-spacing-headline);
+      color: #fff;
+    }
+    .stat-label {
+      margin-top: 0.75rem;
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: var(--letter-spacing-ui);
+      text-transform: uppercase;
+      color: rgba(245,245,245,0.5);
+    }
+    @media (max-width: 768px) {
+      .stat-row { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* === PROBLEM SECTION === */
+    .problem-visual {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .problem-bar {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .problem-bar__track {
+      flex: 1;
+      height: 6px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .problem-bar__fill {
+      height: 100%;
+      border-radius: 3px;
+      transition: width 1.2s ease-out;
+    }
+    .problem-bar__label {
+      min-width: 8rem;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: var(--letter-spacing-ui);
+      text-transform: uppercase;
+      color: rgba(245,245,245,0.7);
+    }
+    .problem-bar__value {
+      font-family: var(--font-headline);
+      font-weight: 900;
+      font-size: 1.5rem;
+      min-width: 5rem;
+      text-align: right;
+      color: #fff;
+    }
+
+    /* === FORK SECTION === */
+    .fork-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .fork-card {
+      background: white;
+      border-radius: var(--radius-card);
+      padding: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .fork-card--weak { opacity: 0.7; }
+    .fork-card--strong {
+      border: 2px solid var(--primary-color);
+    }
+    .fork-card__badge {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: var(--letter-spacing-ui);
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .fork-card--weak .fork-card__badge {
+      background: #F5F5F5;
+      color: var(--text-secondary);
+    }
+    .fork-card--strong .fork-card__badge {
+      background: var(--primary-color);
+      color: white;
+    }
+    .fork-card__title {
+      font-family: var(--font-headline);
+      font-weight: 900;
+      font-size: clamp(1.25rem, 2vw, 1.75rem);
+      line-height: 90%;
+      letter-spacing: var(--letter-spacing-headline);
+      text-transform: uppercase;
+      color: var(--text-primary);
+      margin-bottom: 1.5rem;
+    }
+    .fork-card__list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .fork-card__list li {
+      font-size: 0.875rem;
+      letter-spacing: var(--letter-spacing-body);
+      color: var(--text-secondary);
+      padding-left: 1.5rem;
+      position: relative;
+    }
+    .fork-card__list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.5rem;
+      width: 6px;
+      height: 6px;
+      border-radius: 1px;
+    }
+    .fork-card--weak .fork-card__list li::before {
+      background: var(--text-secondary);
+    }
+    .fork-card--strong .fork-card__list li::before {
+      background: var(--primary-color);
+    }
+    @media (max-width: 768px) {
+      .fork-grid { grid-template-columns: 1fr; }
+    }
+
+    /* === ANALOGY TABLE === */
+    .analogy-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 3rem;
+    }
+    .analogy-table th,
+    .analogy-table td {
+      padding: 1.25rem 1.5rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .analogy-table th {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: var(--letter-spacing-ui);
+      text-transform: uppercase;
+      color: rgba(245,245,245,0.4);
+    }
+    .analogy-table td {
+      font-size: 0.875rem;
+      letter-spacing: var(--letter-spacing-body);
+      color: rgba(245,245,245,0.8);
+    }
+    .analogy-table td:last-child {
+      color: #fff;
+      font-weight: 500;
+    }
+
+    /* === THREE-LAYER SOLUTION === */
+    .layer-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .layer-card {
+      background: white;
+      border-radius: var(--radius-card);
+      padding: 2.5rem;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+    .layer-card__icon {
+      width: 3.5rem;
+      height: 3.5rem;
+      border-radius: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .layer-card__icon svg {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+    .layer-card__label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: var(--letter-spacing-ui);
+      text-transform: uppercase;
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+    }
+    .layer-card__title {
+      font-family: var(--font-headline);
+      font-weight: 900;
+      font-size: clamp(1.25rem, 2vw, 1.75rem);
+      line-height: 90%;
+      letter-spacing: var(--letter-spacing-headline);
+      text-transform: uppercase;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+    }
+    .layer-card__items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+    .layer-card__pill {
+      padding: 0.5rem 1rem;
+      background: var(--body-color);
+      border-radius: var(--radius-pill);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: var(--letter-spacing-ui);
+      text-transform: uppercase;
+      color: var(--text-primary);
+    }
+    @media (max-width: 768px) {
+      .layer-card { grid-template-columns: 1fr; }
+    }
+
+    /* === USE CASE GRID === */
+    .uc-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .uc-card {
+      background: white;
+      border-radius: var(--radius-card);
+      padding: 2rem;
+      transition: var(--transition-fast);
+    }
+    .uc-card:hover { transform: translateY(-4px); }
+    .uc-card__number {
+      font-family: var(--font-headline);
+      font-weight: 900;
+      font-size: 2.5rem;
+      color: var(--text-primary);
+      opacity: 0.06;
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+    .uc-card__title {
+      font-family: var(--font-headline);
+      font-weight: 900;
+      font-size: 1.1rem;
+      line-height: 90%;
+      letter-spacing: var(--letter-spacing-headline);
+      text-transform: uppercase;
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+    }
+    .uc-card__desc {
+      font-size: 0.875rem;
+      letter-spacing: var(--letter-spacing-body);
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+    @media (max-width: 1024px) {
+      .uc-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .uc-grid { grid-template-columns: 1fr; }
+    }
+
+    /* === QUOTE BLOCK === */
+    .quote-block {
+      max-width: 56rem;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .quote-block__text {
+      font-family: var(--font-headline);
+      font-weight: 900;
+      font-size: clamp(1.75rem, 3vw, 3rem);
+      line-height: 90%;
+      letter-spacing: var(--letter-spacing-headline);
+      text-transform: uppercase;
+      color: #fff;
+    }
+    .quote-block__text span { color: var(--primary-color); }
+    .quote-block__attr {
+      margin-top: 2rem;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: var(--letter-spacing-ui);
+      text-transform: uppercase;
+      color: rgba(245,245,245,0.4);
+    }
+
+    /* === CTA SECTION === */
+    .cta-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .cta-card {
+      background: white;
+      border-radius: var(--radius-card);
+      padding: 2.5rem;
+      text-align: center;
+    }
+    .cta-card__title {
+      font-family: var(--font-headline);
+      font-weight: 900;
+      font-size: 1.25rem;
+      line-height: 90%;
+      letter-spacing: var(--letter-spacing-headline);
+      text-transform: uppercase;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+    }
+    .cta-card__desc {
+      font-size: 0.875rem;
+      letter-spacing: var(--letter-spacing-body);
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+    @media (max-width: 768px) {
+      .cta-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="yt-nav" id="nav">
+    <div class="yt-nav__inner">
+      <a href="index.html" class="yt-nav__logo">
+        <img src="https://avatars.mds.yandex.net/get-lpc/14837328/21641dca-3288-4eeb-8d99-81f8cb31a763/orig" alt="Yango Tech" width="176" height="30" loading="eager">
+      </a>
+      <ul class="yt-nav__links">
+        <li><a class="yt-nav__link yt-nav__link--active" href="index.html">Thesis</a></li>
+        <li><a class="yt-nav__link" href="use-cases.html">Use Cases</a></li>
+        <li><a class="yt-nav__link" href="b2b.html">B2B Offering</a></li>
+        <li><a class="yt-nav__link" href="b2c.html">B2C Offering</a></li>
+        <li><a class="yt-nav__link" href="research.html">Research</a></li>
+        <li><a class="yt-btn yt-btn--dark" href="#contact">Talk to an expert</a></li>
+      </ul>
+      <button class="mobile-toggle" onclick="document.querySelector('.yt-nav__links').classList.toggle('open')" aria-label="Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+
+  <!-- ==================== HERO ==================== -->
+  <section class="yt-hero" id="hero">
+    <div class="yt-hero__bg"><div class="hero-grid"></div></div>
+    <div class="yt-hero__content yt-container">
+      <p class="yt-label" style="color: var(--primary-color); margin-bottom: 1.5rem;">Telecom &times; AI Strategy</p>
+      <h1 class="yt-h1" style="max-width: 52rem; text-transform: uppercase;">
+        From Connectivity<br>to AI Distribution
+      </h1>
+      <p class="yt-body" style="margin-top: 2rem; max-width: 38rem; color: rgba(245,245,245,0.6);">
+        Telecoms that build their own AI inference infrastructure will own the next trillion-dollar distribution layer. Those that don't will rent it — at someone else's margin.
+      </p>
+      <div style="margin-top: 3rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+        <a href="#contact" class="yt-btn yt-btn--primary">Launch your AI offering</a>
+        <a href="#fork" class="yt-btn yt-btn--outline" style="border-color: rgba(255,255,255,0.3); color: white;">See the strategic choice</a>
+      </div>
+
+      <div class="stat-row yt-fade-in">
+        <div class="stat-item">
+          <div class="stat-value">$700B+</div>
+          <div class="stat-label">AI infrastructure capex 2026</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">60–70%</div>
+          <div class="stat-label">AI workloads as real-time inference by 2030</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">1%</div>
+          <div class="stat-label">Telecom revenue growth 2010–2023</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">$100B</div>
+          <div class="stat-label">Annual radio network capex globally</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==================== PROBLEM ==================== -->
+  <section class="yt-section yt-dark" id="problem">
+    <div class="yt-container">
+      <div class="yt-grid-2" style="align-items: center; gap: 4rem;">
+        <div class="yt-fade-in">
+          <p class="yt-label" style="color: var(--primary-color); margin-bottom: 1.5rem;">The Problem</p>
+          <h2 class="yt-h2" style="text-transform: uppercase;">Connectivity is commoditized. Margins are collapsing.</h2>
+          <p class="yt-body" style="margin-top: 1.5rem; color: rgba(245,245,245,0.6); max-width: 32rem;">
+            Global mobile data traffic grew 60% per year from 2010 to 2023. Telecom revenues grew just 1% in the same period. Voice and data are utilities now — undifferentiated, price-compressed, margin-thin. VAS bolted on top hasn't changed the math.
+          </p>
+        </div>
+        <div class="problem-visual yt-fade-in" style="transition-delay: 0.15s;">
+          <div class="problem-bar">
+            <span class="problem-bar__label">Data traffic growth</span>
+            <div class="problem-bar__track">
+              <div class="problem-bar__fill" style="width: 85%; background: var(--primary-color);"></div>
+            </div>
+            <span class="problem-bar__value">60%</span>
+          </div>
+          <div class="problem-bar">
+            <span class="problem-bar__label">Revenue growth</span>
+            <div class="problem-bar__track">
+              <div class="problem-bar__fill" style="width: 4%; background: rgba(245,245,245,0.4);"></div>
+            </div>
+            <span class="problem-bar__value" style="color: rgba(245,245,245,0.4);">1%</span>
+          </div>
+          <div class="problem-bar">
+            <span class="problem-bar__label">EBIT from AI</span>
+            <div class="problem-bar__track">
+              <div class="problem-bar__fill" style="width: 5%; background: rgba(245,245,245,0.3);"></div>
+            </div>
+            <span class="problem-bar__value" style="color: rgba(245,245,245,0.3);">&lt;5%</span>
+          </div>
+          <div class="problem-bar">
+            <span class="problem-bar__label">AI pilots at scale</span>
+            <div class="problem-bar__track">
+              <div class="problem-bar__fill" style="width: 7%; background: rgba(245,245,245,0.3);"></div>
+            </div>
+            <span class="problem-bar__value" style="color: rgba(245,245,245,0.3);">7%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==================== OPPORTUNITY ==================== -->
+  <section class="yt-section yt-light" id="opportunity">
+    <div class="yt-container">
+      <div class="yt-fade-in" style="max-width: 48rem;">
+        <p class="yt-label" style="color: var(--primary-color); margin-bottom: 1.5rem;">The Shift</p>
+        <h2 class="yt-h2" style="text-transform: uppercase;">AI is becoming the new utility layer</h2>
+        <p class="yt-body" style="margin-top: 1.5rem; color: var(--text-secondary);">
+          Just as electricity required power plants and the internet required data centers, AI requires inference infrastructure. It's consumed via tokens and APIs — not as a product, but as a utility. Most companies will never build foundation models. They will buy inference. The question is: who distributes it?
+        </p>
+      </div>
+      <div class="yt-grid-3 yt-fade-in" style="margin-top: 4rem;">
+        <div class="yt-card" style="padding: 2.5rem;">
+          <p class="yt-label" style="color: var(--primary-color); margin-bottom: 1rem;">Distribution</p>
+          <p class="yt-body" style="color: var(--text-primary); font-weight: 500;">Telecoms already own the pipe to every business and consumer. That's distribution no hyperscaler can replicate locally.</p>
+        </div>
+        <div class="yt-card" style="padding: 2.5rem;">
+          <p class="yt-label" style="color: var(--primary-color); margin-bottom: 1rem;">Billing</p>
+          <p class="yt-body" style="color: var(--text-primary); font-weight: 500;">Existing billing relationships mean AI can be bundled, metered, and charged through the same channel customers already trust.</p>
+        </div>
+        <div class="yt-card" style="padding: 2.5rem;">
+          <p class="yt-label" style="color: var(--primary-color); margin-bottom: 1rem;">Data Sovereignty</p>
+          <p class="yt-body" style="color: var(--text-primary); font-weight: 500;">Governments want AI processed locally. Telecoms are the natural partners for sovereign cloud and local inference.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==================== STRATEGIC FORK ==================== -->
+  <section class="yt-section yt-light" id="fork" style="padding-top: 0;">
+    <div class="yt-container">
+      <div class="yt-fade-in" style="max-width: 48rem;">
+        <p class="yt-label" style="color: var(--primary-color); margin-bottom: 1.5rem;">The Critical Fork</p>
+        <h2 class="yt-h2" style="text-transform: uppercase;">Reseller or Infrastructure Owner?</h2>
+        <p class="yt-body" style="margin-top: 1.5rem; color: var(--text-secondary);">
+          Every telecom faces the same binary choice. One path leads to thin margins and dependency. The other leads to platform ownership and compounding returns.
+        </p>
+      </div>
+      <div class="fork-grid yt-fade-in">
+        <div class="fork-card fork-card--weak">
+          <div class="fork-card__badge">Low margin path</div>
+          <div class="fork-card__title">Option A: Thin AI Reseller</div>
+          <ul class="fork-card__list">
+            <li>Resell AI from external providers (OpenAI, Google, etc.)</li>
+            <li>No infrastructure ownership or control</li>
+            <li>Commodity margins — same as MVNO economics</li>
+            <li>Zero switching cost for your customers</li>
+            <li>No data sovereignty advantage</li>
+          </ul>
+        </div>
+        <div class="fork-card fork-card--strong">
+          <div class="fork-card__badge">Winning strategy</div>
+          <div class="fork-card__title">Option B: AI Infrastructure Owner</div>
+          <ul class="fork-card__list">
+            <li>Build or co-own AI inference data centers</li>
+            <li>Run models locally — control latency, cost, and data</li>
+            <li>Sell AI tokens directly to enterprises and consumers</li>
+            <li>Higher margins, recurring revenue, platform lock-in</li>
+            <li>Full data sovereignty and regulatory alignment</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==================== ANALOGY ==================== -->
+  <section class="yt-section yt-dark" id="analogy">
+    <div class="yt-container">
+      <div class="yt-fade-in">
+        <p class="yt-label" style="color: var(--primary-color); margin-bottom: 1.5rem;">The Analogy</p>
+        <h2 class="yt-h2" style="text-transform: uppercase; max-width: 40rem;">Build the towers.<br>Don't rent them.</h2>
+        <p class="yt-body" style="margin-top: 1.5rem; color: rgba(245,245,245,0.6); max-width: 36rem;">
+          Telecoms learned this lesson once with cell towers. Those who owned infrastructure controlled margins. Those who leased became MVNOs. The same fork is now playing out with AI compute.
+        </p>
+      </div>
+      <table class="analogy-table yt-fade-in">
+        <thead>
+          <tr>
+            <th>Telecom model</th>
+            <th>AI equivalent</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Renting towers from towercos</td>
+            <td>Reselling external AI APIs</td>
+          </tr>
+          <tr>
+            <td>Owning network infrastructure</td>
+            <td>Owning AI inference data centers</td>
+          </tr>
+          <tr>
+            <td>Low-margin MVNO</td>
+            <td>Thin AI reseller — no moat</td>
+          </tr>
+          <tr>
+            <td>Full network operator (MNO)</td>
+            <td>AI infrastructure + platform owner</td>
+          </tr>
+          <tr>
+            <td style="border-bottom: none;">Selling minutes and data</td>
+            <td style="border-bottom: none;">Selling AI tokens and inference</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+
+  <!-- ==================== NVIDIA QUOTE ==================== -->
+  <section class="yt-section yt-dark" style="padding-top: 0;">
+    <div class="yt-container">
+      <div class="quote-block yt-fade-in">
+        <div class="quote-block__text">
+          "A hundred billion dollars of the world's capital investments each year is in radio networks. In the future, that's going to be <span>accelerated computing infused with AI</span>."
+        </div>
+        <div class="quote-block__attr">Jensen Huang, CEO NVIDIA — GTC 2025</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==================== SOLUTION ==================== -->
+  <section class="yt-section yt-light" id="solution">
+    <div class="yt-container">
+      <div class="yt-fade-in" style="max-width: 48rem;">
+        <p class="yt-label" style="color: var(--primary-color); margin-bottom: 1.5rem;">Our Role</p>
+        <h2 class="yt-h2" style="text-transform: uppercase;">End-to-end partner for telecom AI transformation</h2>
+        <p class="yt-body" style="margin-top: 1.5rem; color: var(--text-secondary);">
+          Yango Tech provides the full stack — from ready-to-deploy AI use cases that generate revenue on day one, to the inference infrastructure that compounds your advantage over time.
+        </p>
+      </div>
+
+      <div class="layer-stack yt-fade-in">
+        <!-- Layer A -->
+        <div class="layer-card">
+          <div class="layer-card__icon" style="background: rgba(255,26,26,0.08);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#FF1A1A" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
+          <div>
+            <div class="layer-card__label">Layer A — Revenue</div>
+            <div class="layer-card__title">AI Use Cases</div>
+            <p class="yt-body" style="color: var(--text-secondary);">Pre-built, telecom-ready AI services that generate revenue from launch. Each use case is designed for your existing customer base — no new sales motion required.</p>
+            <div class="layer-card__items">
+              <span class="layer-card__pill">Call center AI</span>
+              <span class="layer-card__pill">AI assistants</span>
+              <span class="layer-card__pill">SMB AI tools</span>
+              <span class="layer-card__pill">GovTech AI</span>
+              <span class="layer-card__pill">Healthcare AI</span>
+              <span class="layer-card__pill">Logistics AI</span>
+            </div>
+          </div>
+        </div>
+        <!-- Layer B -->
+        <div class="layer-card">
+          <div class="layer-card__icon" style="background: rgba(255,26,26,0.08);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#FF1A1A" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <div>
+            <div class="layer-card__label">Layer B — Infrastructure</div>
+            <div class="layer-card__title">AI Inference Supply</div>
+            <p class="yt-body" style="color: var(--text-secondary);">Start fast with external inference access, then transition to owned data center infrastructure. We guide the build-vs-buy journey from day one.</p>
+            <div class="layer-card__items">
+              <span class="layer-card__pill">External inference (quick launch)</span>
+              <span class="layer-card__pill">Own data center (long-term)</span>
+              <span class="layer-card__pill">GPU-as-a-Service</span>
+              <span class="layer-card__pill">Edge compute</span>
+            </div>
+          </div>
+        </div>
+        <!-- Layer C -->
+        <div class="layer-card">
+          <div class="layer-card__icon" style="background: rgba(255,26,26,0.08);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#FF1A1A" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          </div>
+          <div>
+            <div class="layer-card__label">Layer C — Platform</div>
+            <div class="layer-card__title">AI Platform Layer</div>
+            <p class="yt-body" style="color: var(--text-secondary);">The operating system that lets you package, price, and distribute AI through your existing commercial engine. Subscription billing, usage metering, workload management — all built in.</p>
+            <div class="layer-card__items">
+              <span class="layer-card__pill">AI marketplace</span>
+              <span class="layer-card__pill">Usage billing</span>
+              <span class="layer-card__pill">Workload orchestration</span>
+              <span class="layer-card__pill">Partner ecosystem</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==================== USE CASES PREVIEW ==================== -->
+  <section class="yt-section yt-light" id="usecases" style="padding-top: 0;">
+    <div class="yt-container">
+      <div class="yt-fade-in" style="max-width: 48rem;">
+        <p class="yt-label" style="color: var(--primary-color); margin-bottom: 1.5rem;">Where Inference Gets Consumed</p>
+        <h2 class="yt-h2" style="text-transform: uppercase;">Revenue-generating AI use cases</h2>
+      </div>
+      <div class="uc-grid yt-fade-in">
+        <div class="uc-card">
+          <div class="uc-card__number">01</div>
+          <div class="uc-card__title">AI Contact Center</div>
+          <div class="uc-card__desc">Replace or augment call center agents with AI that handles 70%+ of inbound queries across voice and chat — in local languages.</div>
+        </div>
+        <div class="uc-card">
+          <div class="uc-card__number">02</div>
+          <div class="uc-card__title">Enterprise AI Assistants</div>
+          <div class="uc-card__desc">White-label AI assistants for B2B customers — document analysis, code generation, data querying — sold as a telecom subscription.</div>
+        </div>
+        <div class="uc-card">
+          <div class="uc-card__number">03</div>
+          <div class="uc-card__title">SMB Productivity Suite</div>
+          <div class="uc-card__desc">AI tools for small businesses: automated bookkeeping, marketing copy, customer support bots — bundled with connectivity plans.</div>
+        </div>
+        <div class="uc-card">
+          <div class="uc-card__number">04</div>
+          <div class="uc-card__title">Government AI Services</div>
+          <div class="uc-card__desc">Sovereign AI for public sector: document processing, citizen services automation, regulatory compliance — hosted on local infrastructure.</div>
+        </div>
+        <div class="uc-card">
+          <div class="uc-card__number">05</div>
+          <div class="uc-card__title">Healthcare AI</div>
+          <div class="uc-card__desc">Diagnostic support, appointment scheduling, medical record summarization — deployed through telecom health partnerships.</div>
+        </div>
+        <div class="uc-card">
+          <div class="uc-card__number">06</div>
+          <div class="uc-card__title">Logistics &amp; Fleet AI</div>
+          <div class="uc-card__desc">Route optimization, demand forecasting, fleet management — sold to transport and delivery companies via the telecom's enterprise sales channel.</div>
+        </div>
+      </div>
+      <div style="margin-top: 3rem; text-align: center;">
+        <a href="use-cases.html" class="yt-btn yt-btn--primary">See all use cases &amp; live examples</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==================== CTA ==================== -->
+  <section class="yt-section yt-light" id="contact">
+    <div class="yt-container">
+      <div class="yt-fade-in" style="text-align: center; max-width: 48rem; margin: 0 auto;">
+        <h2 class="yt-h2" style="text-transform: uppercase;">Launch your AI offering in 90 days</h2>
+        <p class="yt-body" style="margin-top: 1.5rem; color: var(--text-secondary);">
+          We don't sell decks. We ship products. Start with one use case, prove revenue, then scale the platform.
+        </p>
+      </div>
+      <div class="cta-grid yt-fade-in">
+        <div class="cta-card">
+          <div class="cta-card__title">Pilot</div>
+          <div class="cta-card__desc">Deploy one AI use case in your market within 90 days. Prove the economics before committing infrastructure.</div>
+          <a href="mailto:eechernikov@yango.com?subject=Telecom AI Pilot" class="yt-btn yt-btn--primary">Start a pilot</a>
+        </div>
+        <div class="cta-card">
+          <div class="cta-card__title">Strategy</div>
+          <div class="cta-card__desc">Build your AI inference strategy with our team. Market assessment, use case prioritization, infrastructure roadmap.</div>
+          <a href="mailto:eechernikov@yango.com?subject=AI Strategy Session" class="yt-btn yt-btn--dark">Book a session</a>
+        </div>
+        <div class="cta-card">
+          <div class="cta-card__title">Partnership</div>
+          <div class="cta-card__desc">Full-stack partnership: use cases, platform, and infrastructure — co-built for your market.</div>
+          <a href="mailto:eechernikov@yango.com?subject=Telecom AI Partnership" class="yt-btn yt-btn--dark">Partner with us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==================== CONTACT FORM ==================== -->
+  <section class="yt-section yt-dark" id="form">
+    <div class="yt-container" style="max-width: 48rem;">
+      <h2 class="yt-h2" style="text-transform: uppercase; text-align: center; margin-bottom: 3rem;">Get in touch</h2>
+      <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+          <input class="yt-input" type="text" placeholder="Name" style="background: rgba(255,255,255,0.08); color: #fff;">
+          <input class="yt-input" type="email" placeholder="Email" style="background: rgba(255,255,255,0.08); color: #fff;">
+        </div>
+        <input class="yt-input" type="text" placeholder="Company" style="background: rgba(255,255,255,0.08); color: #fff;">
+        <input class="yt-input" type="text" placeholder="Role / Title" style="background: rgba(255,255,255,0.08); color: #fff;">
+        <textarea class="yt-input" placeholder="Tell us about your AI priorities" style="background: rgba(255,255,255,0.08); color: #fff;"></textarea>
+        <button class="yt-btn yt-btn--primary" style="align-self: flex-start;">Submit</button>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer class="yt-footer">
+    <div class="yt-container">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 2rem;">
+        <a href="index.html">
+          <img src="https://avatars.mds.yandex.net/get-lpc/14837328/21641dca-3288-4eeb-8d99-81f8cb31a763/orig" alt="Yango Tech" width="176" height="30" style="filter: invert(1);">
+        </a>
+        <div style="display: flex; gap: 3.75rem; flex-wrap: wrap;">
+          <div>
+            <p class="yt-label" style="margin-bottom: 1rem; opacity: 0.5;">Pages</p>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.75rem;">
+              <li><a href="index.html" class="yt-label--sentence">Strategic thesis</a></li>
+              <li><a href="use-cases.html" class="yt-label--sentence">Use cases</a></li>
+              <li><a href="b2b.html" class="yt-label--sentence">B2B offering</a></li>
+              <li><a href="b2c.html" class="yt-label--sentence">B2C offering</a></li>
+              <li><a href="research.html" class="yt-label--sentence">Research &amp; sources</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="yt-label" style="margin-bottom: 1rem; opacity: 0.5;">Contact</p>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.75rem;">
+              <li><a href="mailto:eechernikov@yango.com" class="yt-label--sentence">eechernikov@yango.com</a></li>
+              <li><a href="https://tech.yango.com" class="yt-label--sentence">tech.yango.com</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="yt-footer__bottom">
+        <span class="yt-label" style="opacity: 0.5;">&copy; 2026 Yango Tech</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('yt-visible');
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.yt-fade-in').forEach(el => observer.observe(el));
+
+    // Nav scroll behavior
+    const nav = document.getElementById('nav');
+    const heroEl = document.getElementById('hero');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('yt-nav--dark', window.scrollY > heroEl.offsetHeight - 100);
+    });
+  </script>
+</body>
+</html>

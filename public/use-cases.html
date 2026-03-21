@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Use Cases — Telecom × AI — Yango Tech</title>
+  <meta name="description" content="Real examples of telecoms deploying AI services across Africa, Indonesia, and the world.">
+  <link rel="preload" as="font" href="https://yastatic.net/s3/distribution/lpc/fonts/YangoHeadline/YangoHeadline.woff2" crossorigin="anonymous">
+  <link rel="preload" as="font" href="https://yastatic.net/s3/distribution/lpc/fonts/YangoGroupText/YangoGroupText-Regular.woff2" crossorigin="anonymous">
+  <link rel="preload" as="font" href="https://yastatic.net/s3/distribution/lpc/fonts/YangoGroupText/YangoGroupText-Medium.woff2" crossorigin="anonymous">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23FF1A1A' width='100' height='100' rx='20'/></svg>">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .page-hero {
+      position: relative; min-height: 60vh; display: flex; align-items: center;
+      background: #000; color: var(--text-on-dark); overflow: hidden; padding-top: 8rem; padding-bottom: 4rem;
+    }
+    .page-hero__bg {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 70% 40%, rgba(255,26,26,0.1) 0%, transparent 50%), #000;
+    }
+    .page-hero__content { position: relative; z-index: 1; }
+
+    /* Case study cards */
+    .case-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
+    .case-card {
+      background: white; border-radius: var(--radius-card); overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+    .case-card__header {
+      padding: 2rem 2.5rem 1.5rem;
+      border-bottom: 1px solid rgba(196,196,196,0.3);
+    }
+    .case-card__operator {
+      font-size: 0.72rem; font-weight: 500; letter-spacing: var(--letter-spacing-ui);
+      text-transform: uppercase; color: var(--primary-color); margin-bottom: 0.75rem;
+    }
+    .case-card__title {
+      font-family: var(--font-headline); font-weight: 900;
+      font-size: clamp(1.1rem, 1.8vw, 1.5rem); line-height: 90%;
+      letter-spacing: var(--letter-spacing-headline); text-transform: uppercase;
+      color: var(--text-primary);
+    }
+    .case-card__body { padding: 1.5rem 2.5rem 2.5rem; flex: 1; }
+    .case-card__desc {
+      font-size: 0.875rem; letter-spacing: var(--letter-spacing-body);
+      color: var(--text-secondary); line-height: 1.6;
+    }
+    .case-card__stats {
+      display: flex; gap: 2rem; margin-top: 1.5rem; padding-top: 1.5rem;
+      border-top: 1px solid rgba(196,196,196,0.3);
+    }
+    .case-stat__value {
+      font-family: var(--font-headline); font-weight: 900;
+      font-size: 1.25rem; color: var(--text-primary); line-height: 1;
+    }
+    .case-stat__label {
+      font-size: 0.72rem; font-weight: 500; letter-spacing: var(--letter-spacing-ui);
+      text-transform: uppercase; color: var(--text-secondary); margin-top: 0.25rem;
+    }
+    .case-card__tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+    .case-tag {
+      padding: 0.35rem 0.75rem; background: var(--body-color); border-radius: var(--radius-pill);
+      font-size: 0.68rem; font-weight: 500; letter-spacing: var(--letter-spacing-ui);
+      text-transform: uppercase; color: var(--text-primary);
+    }
+    @media (max-width: 768px) { .case-grid { grid-template-columns: 1fr; } }
+
+    /* Detailed use case blocks */
+    .uc-detail {
+      display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem;
+      padding: 4rem 0; border-bottom: 1px solid rgba(196,196,196,0.3);
+      align-items: start;
+    }
+    .uc-detail:last-child { border-bottom: none; }
+    .uc-detail__number {
+      font-family: var(--font-headline); font-weight: 900;
+      font-size: 5rem; color: var(--text-primary); opacity: 0.06;
+      line-height: 1; margin-bottom: 1rem;
+    }
+    .uc-detail__title {
+      font-family: var(--font-headline); font-weight: 900;
+      font-size: clamp(1.25rem, 2vw, 2rem); line-height: 90%;
+      letter-spacing: var(--letter-spacing-headline); text-transform: uppercase;
+      color: var(--text-primary); margin-bottom: 1rem;
+    }
+    .uc-detail__desc {
+      font-size: 0.875rem; letter-spacing: var(--letter-spacing-body);
+      color: var(--text-secondary); line-height: 1.6;
+    }
+    .uc-detail__mockup {
+      background: white; border-radius: var(--radius-card); padding: 2rem;
+    }
+    .mockup-bar {
+      display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem;
+      padding-bottom: 1rem; border-bottom: 1px solid rgba(196,196,196,0.3);
+    }
+    .mockup-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(196,196,196,0.5); }
+    .mockup-url {
+      flex: 1; background: var(--body-color); border-radius: 0.5rem;
+      padding: 0.4rem 1rem; font-size: 0.68rem; color: var(--text-secondary);
+      letter-spacing: var(--letter-spacing-body);
+    }
+    .mockup-content { min-height: 12rem; }
+    .mockup-row {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 0.75rem 0; border-bottom: 1px solid rgba(196,196,196,0.15);
+    }
+    .mockup-avatar {
+      width: 2rem; height: 2rem; border-radius: 50%; flex-shrink: 0;
+    }
+    .mockup-text { flex: 1; }
+    .mockup-line {
+      height: 0.5rem; border-radius: 0.25rem; margin-bottom: 0.35rem;
+    }
+    .mockup-metric-row { display: flex; gap: 1rem; margin-top: 1rem; }
+    .mockup-metric {
+      flex: 1; background: var(--body-color); border-radius: 1rem;
+      padding: 1rem; text-align: center;
+    }
+    .mockup-metric__val {
+      font-family: var(--font-headline); font-weight: 900;
+      font-size: 1.25rem; color: var(--text-primary);
+    }
+    .mockup-metric__lbl {
+      font-size: 0.62rem; font-weight: 500; letter-spacing: var(--letter-spacing-ui);
+      text-transform: uppercase; color: var(--text-secondary); margin-top: 0.25rem;
+    }
+    @media (max-width: 768px) { .uc-detail { grid-template-columns: 1fr; gap: 2rem; } }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="yt-nav" id="nav">
+    <div class="yt-nav__inner">
+      <a href="index.html" class="yt-nav__logo">
+        <img src="https://avatars.mds.yandex.net/get-lpc/14837328/21641dca-3288-4eeb-8d99-81f8cb31a763/orig" alt="Yango Tech" width="176" height="30" loading="eager">
+      </a>
+      <ul class="yt-nav__links">
+        <li><a class="yt-nav__link" href="index.html">Thesis</a></li>
+        <li><a class="yt-nav__link yt-nav__link--active" href="use-cases.html">Use Cases</a></li>
+        <li><a class="yt-nav__link" href="b2b.html">B2B Offering</a></li>
+        <li><a class="yt-nav__link" href="b2c.html">B2C Offering</a></li>
+        <li><a class="yt-nav__link" href="research.html">Research</a></li>
+        <li><a class="yt-btn yt-btn--dark" href="index.html#contact">Talk to an expert</a></li>
+      </ul>
+      <button class="mobile-toggle" onclick="document.querySelector('.yt-nav__links').classList.toggle('open')" aria-label="Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="page-hero__bg"></div>
+    <div class="page-hero__content yt-container">
+      <p class="yt-label" style="color: var(--primary-color); margin-bottom: 1.5rem;">Use Cases &amp; Live Examples</p>
+      <h1 class="yt-h1" style="max-width: 48rem; text-transform: uppercase;">Telecoms already doing this</h1>
+      <p class="yt-body" style="margin-top: 2rem; max-width: 36rem; color: rgba(245,245,245,0.6);">
+        From Safaricom's AI infrastructure in Kenya to Indosat's company-wide transformation in Indonesia — real operators are already making the shift. Here's what it looks like.
+      </p>
+    </div>
+  </section>
+
+  <!-- REAL-WORLD CASE STUDIES -->
+  <section class="yt-section yt-light">
+    <div class="yt-container">
+      <div class="yt-fade-in">
+        <p class="yt-label" style="color: var(--primary-color); margin-bottom: 1.5rem;">Live Examples</p>
+        <h2 class="yt-h2" style="text-transform: uppercase; max-width: 40rem;">Operators leading the AI transition</h2>
+      </div>
+
+      <div class="case-grid yt-fade-in">
+        <!-- Safaricom -->
+        <div class="case-card">
+          <div class="case-card__header">
+            <div class="case-card__operator">Safaricom — Kenya</div>
+            <div class="case-card__title">$500M AI infrastructure investment</div>
+          </div>
+          <div class="case-card__body">
+            <div class="case-card__desc">
+              Committed $500M over three years to AI-ready infrastructure across East Africa. Partnered with iXAfrica to build a 22.5MW data center — the largest in Greater East Africa. Deployed Zuri AI chatbot serving 30M+ M-Pesa users and launched Idea-to-Cash NLP engine with Huawei to convert customer needs into financial products in minutes. 5,000 employees trained in AI fundamentals.
+            </div>
+            <div class="case-card__stats">
+              <div><div class="case-stat__value">$500M</div><div class="case-stat__label">AI investment</div></div>
+              <div><div class="case-stat__value">22.5 MW</div><div class="case-stat__label">Data center</div></div>
+              <div><div class="case-stat__value">30M+</div><div class="case-stat__label">Users on AI</div></div>
+            </div>
+            <div class="case-card__tags">
+              <span class="case-tag">Data centers</span>
+              <span class="case-tag">AI chatbot</span>
+              <span class="case-tag">NLP</span>
+              <span class="case-tag">FinTech</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Indosat -->
+        <div class="case-card">
+          <div class="case-card__header">
+            <div class="case-card__operator">Indosat Ooredoo Hutchison — Indonesia</div>
+            <div class="case-card__title">"70% people, 20% process, 10% tech"</div>
+          </div>
+          <div class="case-card__body">
+            <div class="case-card__desc">
+              CEO Vikram Sinha framed the AI transformation as primarily organizational, not technological. Partnered with McKinsey on company-wide agentic AI deployment. Telkomsel partnered with Perplexity to integrate AI search. Indonesia's data center market projected to reach $9.4B by 2030 — telecoms are the anchor tenants.
+            </div>
+            <div class="case-card__stats">
+              <div><div class="case-stat__value">$13.4B</div><div class="case-stat__label">Indonesia telecom market</div></div>
+              <div><div class="case-stat__value">$9.4B</div><div class="case-stat__label">DC market by 2030</div></div>
+              <div><div class="case-stat__value">270M</div><div class="case-stat__label">Population</div></div>
+            </div>
+            <div class="case-card__tags">
+              <span class="case-tag">Agentic AI</span>
+              <span class="case-tag">Data centers</span>
+              <span class="case-tag">AI search</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- MTN -->
+        <div class="case-card">
+          <div class="case-card__header">
+            <div class="case-card__operator">MTN Group — Pan-Africa</div>
+            <div class="case-card__title">MTN × Microsoft AI partnership</div>
+          </div>
+          <div class="case-card__body">
+            <div class="case-card__desc">
+              Africa's largest operator partnered with Microsoft to democratize AI access across the continent. 300M+ subscriber base used as AI distribution channel. Bayobab subsidiary targeting 135,000 km of fibre — backbone for both connectivity and AI inference delivery at the edge.
+            </div>
+            <div class="case-card__stats">
+              <div><div class="case-stat__value">300M+</div><div class="case-stat__label">Subscribers</div></div>
+              <div><div class="case-stat__value">135K km</div><div class="case-stat__label">Fibre target</div></div>
+              <div><div class="case-stat__value">16</div><div class="case-stat__label">Markets</div></div>
+            </div>
+            <div class="case-card__tags">
+              <span class="case-tag">Microsoft</span>
+              <span class="case-tag">AI distribution</span>
+              <span class="case-tag">Fibre</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- NVIDIA + T-Mobile -->
+        <div class="case-card">
+          <div class="case-card__header">
+            <div class="case-card__operator">T-Mobile × NVIDIA × Nokia</div>
+            <div class="case-card__title">AI-native 6G radio networks</div>
+          </div>
+          <div class="case-card__body">
+            <div class="case-card__desc">
+              NVIDIA, Cisco, T-Mobile, and Cerberus ODC building the full stack for AI-native radio networks in the US. Uses NVIDIA's Aerial RAN computer for AI-infused 6G. Jensen Huang: the next generation of wireless will be "accelerated computing infused with AI" — redefining what a cell tower does.
+            </div>
+            <div class="case-card__stats">
+              <div><div class="case-stat__value">$100B</div><div class="case-stat__label">Annual radio capex globally</div></div>
+              <div><div class="case-stat__value">6G</div><div class="case-stat__label">AI-native target</div></div>
+            </div>
+            <div class="case-card__tags">
+              <span class="case-tag">NVIDIA</span>
+              <span class="case-tag">6G</span>
+              <span class="case-tag">Edge AI</span>
+              <span class="case-tag">RAN</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ooredoo -->
+        <div class="case-card">
+          <div class="case-card__header">
+            <div class="case-card__operator">Ooredoo — MENA</div>
+            <div class="case-card__title">GPT-4o powered customer service</div>
+          </div>
+          <div class="case-card__body">
+            <div class="case-card__desc">
+              Launched "Obot" — a GPT-4o powered chatbot handling customer interactions across multiple markets in the Middle East. Demonstrates how telecoms can embed foundation model capabilities directly into existing customer touchpoints without building from scratch.
+            </div>
+            <div class="case-card__stats">
+              <div><div class="case-stat__value">GPT-4o</div><div class="case-stat__label">Foundation model</div></div>
+              <div><div class="case-stat__value">Multi</div><div class="case-stat__label">Market deploy</div></div>
+            </div>
+            <div class="case-card__tags">
+              <span class="case-tag">LLM</span>
+              <span class="case-tag">Customer care</span>
+              <span class="case-tag">Multi-market</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- e& UAE -->
+        <div class="case-card">
+          <div class="case-card__header">
+            <div class="case-card__operator">e& — UAE</div>
+            <div class="case-card__title">AI-powered infrastructure operations</div>
+          </div>
+          <div class="case-card__body">
+            <div class="case-card__desc">
+              Deployed AI-powered drones for telecom tower inspections and operations. Part of a broader push into AI-native network management. The UAE and Saudi Arabia are investing $100B+ in AI and data center infrastructure — telecoms are central to execution.
+            </div>
+            <div class="case-card__stats">
+              <div><div class="case-stat__value">$100B+</div><div class="case-stat__label">Gulf AI + DC commitments</div></div>
+              <div><div class="case-stat__value">6 GW</div><div class="case-stat__label">Saudi AI target</div></div>
+            </div>
+            <div class="case-card__tags">
+              <span class="case-tag">Drones</span>
+              <span class="case-tag">Network AI</span>
+              <span class="case-tag">Sovereign AI</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- DETAILED USE CASES -->
+  <section class="yt-section yt-light" style="padding-top: 0;">
+    <div class="yt-container">
+      <div class="yt-fade-in" style="margin-bottom: 2rem;">
+        <p class="yt-label" style="color: var(--primary-color); margin-bottom: 1.5rem;">Yango Tech Use Cases</p>
+        <h2 class="yt-h2" style="text-transform: uppercase; max-width: 40rem;">What we deploy for telecoms</h2>
+      </div>
+
+      <!-- UC 1 -->
+      <div class="uc-detail yt-fade-in">
+        <div>
+          <div class="uc-detail__number">01</div>
+          <div class="uc-detail__title">AI Contact Center</div>
+          <div class="uc-detail__desc">
+            Replace 70%+ of inbound customer queries with AI agents that handle voice and chat in local languages. Integrates with existing IVR and CRM. Reduces average handle time by 60%, cuts OPEX, and improves first-contact resolution. Deployed as a white-label product your enterprise customers can resell to their own clients.
+          </div>
+        </div>
+        <div class="uc-detail__mockup">
+          <div class="mockup-bar">
+            <div class="mockup-dot"></div><div class="mockup-dot"></div><div class="mockup-dot"></div>
+            <div class="mockup-url">ai-contact.telecom.co</div>
+          </div>
+          <div class="mockup-content">
+            <div class="mockup-metric-row">
+              <div class="mockup-metric"><div class="mockup-metric__val">73%</div><div class="mockup-metric__lbl">AI resolved</div></div>
+              <div class="mockup-metric"><div class="mockup-metric__val">2.1m</div><div class="mockup-metric__lbl">Calls / month</div></div>
+              <div class="mockup-metric"><div class="mockup-metric__val">-62%</div><div class="mockup-metric__lbl">Handle time</div></div>
+            </div>
+            <div style="margin-top: 1.5rem;">
+              <div class="mockup-row">
+                <div class="mockup-avatar" style="background: rgba(255,26,26,0.1);"></div>
+                <div class="mockup-text">
+                  <div class="mockup-line" style="width: 85%; height: 0.4rem; background: var(--body-color);"></div>
+                  <div class="mockup-line" style="width: 60%; height: 0.4rem; background: var(--body-color);"></div>
+                </div>
+              </div>
+              <div class="mockup-row">
+                <div class="mockup-avatar" style="background: rgba(20,20,20,0.08);"></div>
+                <div class="mockup-text">
+                  <div class="mockup-line" style="width: 70%; height: 0.4rem; background: var(--body-color);"></div>
+                  <div class="mockup-line" style="width: 45%; height: 0.4rem; background: var(--body-color);"></div>
+                </div>
+              </div>
+              <div class="mockup-row" style="border-bottom: none;">
+                <div class="mockup-avatar" style="background: rgba(255,26,26,0.1);"></div>
+                <div class="mockup-text">
+                  <div class="mockup-line" style="width: 90%; height: 0.4rem; background: var(--body-color);"></div>
+                  <div class="mockup-line" style="width: 50%; height: 0.4rem; background: var(--body-color);"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- UC 2 -->
+      <div class="uc-detail yt-fade-in">
+        <div>
+          <div class="uc-detail__number">02</div>
+          <div class="uc-detail__title">Enterprise AI Assistants</div>
+          <div class="uc-detail__desc">
+            White-label AI assistants sold as telecom enterprise subscriptions. Document analysis, code generation, data querying, meeting summarization. Each enterprise customer gets their own branded instance with data isolation. Billed per user per month through existing B2B channels — no new sales motion required.
+          </div>
+        </div>
+        <div class="uc-detail__mockup">
+          <div class="mockup-bar">
+            <div class="mockup-dot"></div><div class="mockup-dot"></div><div class="mockup-dot"></div>
+            <div class="mockup-url">assistant.enterprise.telecom.co</div>
+          </div>
+          <div class="mockup-content">
+            <div style="padding: 1rem; background: var(--body-color); border-radius: 1rem; margin-bottom: 1rem;">
+              <div class="mockup-line" style="width: 100%; height: 2rem; background: white; border-radius: 0.5rem;"></div>
+            </div>
+            <div style="display: flex; gap: 0.75rem;">
+              <div style="flex: 1; background: var(--body-color); border-radius: 0.75rem; padding: 0.75rem;">
+                <div class="mockup-line" style="width: 60%; height: 0.4rem; background: rgba(255,26,26,0.15); margin-bottom: 0.5rem;"></div>
+                <div class="mockup-line" style="width: 100%; height: 0.4rem; background: rgba(20,20,20,0.08);"></div>
+                <div class="mockup-line" style="width: 80%; height: 0.4rem; background: rgba(20,20,20,0.08);"></div>
+              </div>
+              <div style="flex: 1; background: var(--body-color); border-radius: 0.75rem; padding: 0.75rem;">
+                <div class="mockup-line" style="width: 50%; height: 0.4rem; background: rgba(255,26,26,0.15); margin-bottom: 0.5rem;"></div>
+                <div class="mockup-line" style="width: 100%; height: 0.4rem; background: rgba(20,20,20,0.08);"></div>
+                <div class="mockup-line" style="width: 70%; height: 0.4rem; background: rgba(20,20,20,0.08);"></div>
+              </div>
+            </div>
+            <div class="mockup-metric-row" style="margin-top: 1rem;">
+              <div class="mockup-metric"><div class="mockup-metric__val">$12</div><div class="mockup-metric__lbl">Per user / mo</div></div>
+              <div class="mockup-metric"><div class="mockup-metric__val">85%</div><div class="mockup-metric__lbl">Gross margin</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- UC 3 -->
+      <div class="uc-detail yt-fade-in">
+        <div>
+          <div class="uc-detail__number">03</div>
+          <div class="uc-detail__title">SMB AI Productivity Suite</div>
+          <div class="uc-detail__desc">
+            Bundled AI tools for small businesses: automated bookkeeping, marketing copy generation, customer support bots, inventory forecasting. Sold as add-ons to existing SMB connectivity plans. Zero setup for the end customer — just activate via the telecom app. Drives ARPU increase of 15–30% on SMB plans.
+          </div>
+        </div>
+        <div class="uc-detail__mockup">
+          <div class="mockup-bar">
+            <div class="mockup-dot"></div><div class="mockup-dot"></div><div class="mockup-dot"></div>
+            <div class="mockup-url">smb.telecom.co/ai-tools</div>
+          </div>
+          <div class="mockup-content">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+              <div style="background: var(--body-color); border-radius: 1rem; padding: 1rem; text-align: center;">
+                <div style="width: 2rem; height: 2rem; background: rgba(255,26,26,0.1); border-radius: 0.5rem; margin: 0 auto 0.5rem;"></div>
+                <div style="font-size: 0.68rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-primary);">Bookkeeping</div>
+              </div>
+              <div style="background: var(--body-color); border-radius: 1rem; padding: 1rem; text-align: center;">
+                <div style="width: 2rem; height: 2rem; background: rgba(255,26,26,0.1); border-radius: 0.5rem; margin: 0 auto 0.5rem;"></div>
+                <div style="font-size: 0.68rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-primary);">Marketing</div>
+              </div>
+              <div style="background: var(--body-color); border-radius: 1rem; padding: 1rem; text-align: center;">
+                <div style="width: 2rem; height: 2rem; background: rgba(255,26,26,0.1); border-radius: 0.5rem; margin: 0 auto 0.5rem;"></div>
+                <div style="font-size: 0.68rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-primary);">Support Bot</div>
+              </div>
+              <div style="background: var(--body-color); border-radius: 1rem; padding: 1rem; text-align: center;">
+                <div style="width: 2rem; height: 2rem; background: rgba(255,26,26,0.1); border-radius: 0.5rem; margin: 0 auto 0.5rem;"></div>
+                <div style="font-size: 0.68rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-primary);">Forecast</div>
+              </div>
+            </div>
+            <div class="mockup-metric-row" style="margin-top: 1rem;">
+              <div class="mockup-metric"><div class="mockup-metric__val">+23%</div><div class="mockup-metric__lbl">ARPU uplift</div></div>
+              <div class="mockup-metric"><div class="mockup-metric__val">0</div><div class="mockup-metric__lbl">Setup friction</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- UC 4 -->
+      <div class="uc-detail yt-fade-in">
+        <div>
+          <div class="uc-detail__number">04</div>
+          <div class="uc-detail__title">Sovereign Government AI</div>
+          <div class="uc-detail__desc">
+            Government AI services hosted entirely on local infrastructure: document processing for ministries, citizen service automation, regulatory compliance checking, national ID verification. Aligns with data sovereignty mandates. Telecom acts as the trusted local delivery partner — governments won't give this to AWS.
+          </div>
+        </div>
+        <div class="uc-detail__mockup">
+          <div class="mockup-bar">
+            <div class="mockup-dot"></div><div class="mockup-dot"></div><div class="mockup-dot"></div>
+            <div class="mockup-url">gov.ai.sovereign.co</div>
+          </div>
+          <div class="mockup-content">
+            <div style="background: var(--body-color); border-radius: 1rem; padding: 1.5rem; margin-bottom: 1rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <div style="font-size: 0.68rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-primary);">Document Queue</div>
+                <div style="font-size: 0.68rem; color: var(--primary-color); font-weight: 500;">2,847 processed today</div>
+              </div>
+              <div style="height: 4px; background: rgba(196,196,196,0.3); border-radius: 2px; overflow: hidden;">
+                <div style="height: 100%; width: 78%; background: var(--primary-color); border-radius: 2px;"></div>
+              </div>
+            </div>
+            <div class="mockup-metric-row">
+              <div class="mockup-metric"><div class="mockup-metric__val">100%</div><div class="mockup-metric__lbl">On-premise</div></div>
+              <div class="mockup-metric"><div class="mockup-metric__val">14</div><div class="mockup-metric__lbl">Ministries</div></div>
+              <div class="mockup-metric"><div class="mockup-metric__val">98.7%</div><div class="mockup-metric__lbl">Accuracy</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CTA -->
+  <section class="yt-section yt-dark">
+    <div class="yt-container" style="text-align: center;">
+      <div class="yt-fade-in">
+        <h2 class="yt-h2" style="text-transform: uppercase;">Ready to deploy?</h2>
+        <p class="yt-body" style="margin-top: 1.5rem; color: rgba(245,245,245,0.6); max-width: 32rem; margin-left: auto; margin-right: auto;">
+          Every use case above is available today. We ship in 90 days or less.
+        </p>
+        <div style="margin-top: 3rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="index.html#contact" class="yt-btn yt-btn--primary">Start a pilot</a>
+          <a href="b2b.html" class="yt-btn yt-btn--outline" style="border-color: rgba(255,255,255,0.3); color: white;">See B2B offering</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer class="yt-footer">
+    <div class="yt-container">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 2rem;">
+        <a href="index.html"><img src="https://avatars.mds.yandex.net/get-lpc/14837328/21641dca-3288-4eeb-8d99-81f8cb31a763/orig" alt="Yango Tech" width="176" height="30" style="filter: invert(1);"></a>
+        <div style="display: flex; gap: 3.75rem; flex-wrap: wrap;">
+          <div>
+            <p class="yt-label" style="margin-bottom: 1rem; opacity: 0.5;">Pages</p>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.75rem;">
+              <li><a href="index.html" class="yt-label--sentence">Strategic thesis</a></li>
+              <li><a href="use-cases.html" class="yt-label--sentence">Use cases</a></li>
+              <li><a href="b2b.html" class="yt-label--sentence">B2B offering</a></li>
+              <li><a href="b2c.html" class="yt-label--sentence">B2C offering</a></li>
+              <li><a href="research.html" class="yt-label--sentence">Research &amp; sources</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="yt-footer__bottom">
+        <span class="yt-label" style="opacity: 0.5;">&copy; 2026 Yango Tech</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('yt-visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.yt-fade-in').forEach(el => observer.observe(el));
+    const nav = document.getElementById('nav');
+    const heroSection = document.querySelector('.page-hero');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('yt-nav--dark', window.scrollY > heroSection.offsetHeight - 100);
+    });
+  </script>
+</body>
+</html>
